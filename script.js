@@ -1,6 +1,50 @@
 const toggle=document.querySelector('.menu-toggle');const nav=document.querySelector('#mainNav');
 toggle?.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',open)});
 document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle?.setAttribute('aria-expanded','false')}));
-const sections=[...document.querySelectorAll('main section[id]')], links=[...document.querySelectorAll('#mainNav>a')];
-const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-35% 0px -55% 0px'});
-sections.forEach(s=>observer.observe(s));
+
+const exams=[
+['Ácido úrico','$3,30'],['Albúmina','$3,30'],['Amilasa','$4,00'],['Aglutinaciones febriles','$7,00'],['ASTO - Antiestreptolisina','$8,80'],['Alfa feto proteínas - AFP','$13,28'],['Ácido fólico','$13,00'],['ACTIN F. IgA / ACTIN','$28,60'],['ACTIN IgG','$28,60'],['ANCA C-P','$40,00'],['ASCA IgG','$25,50'],['ASCA IgA','$25,50'],['Antitrombina','$39,61'],['Apolipoproteína A1','$15,40'],['Apolipoproteína B','$9,36'],['BUN (incluye urea)','$6,09'],['Creatinina','$3,30'],['Colesterol total','$3,30'],['Colesterol HDL','$5,50'],['Colesterol LDL','$5,60'],['Coprocultivo (heces)','$22,00'],['Calcio','$4,00'],['CA 125 (ovario, útero)','$15,40'],['Ceruloplasmina','$35,07'],['Calprotectina','$36,40'],['Calcio iónico','$8,00'],['Cloro','$3,38'],['Cardiolipina IgG','$24,44'],['Cardiolipina IgM','$24,44'],['CK MB-CPK','$13,52'],['Creatinina (orina)','$6,09'],['Colinesterasa','$4,40'],['Interleukina 6','$34,00'],['Insulina plasmática en ayunas','$14,30'],['IgG por nefelometría','$16,00'],['IgM por nefelometría','$17,00'],['IgA por nefelometría','$17,00'],['IgE total','$16,00'],['Influenza A/B/H1N1 por PCR GeneXpert','$188,37'],['Influenza A/B antígeno','$28,00'],['Insulina 2h post prandial','$34,00'],['KOH','$13,20'],['Kappa (orina)','$27,63'],['Kappa 24h','$28,60'],['Lipasa','$4,40'],['LDH (deshidrogenasa láctica)','$4,40'],['Linfocitos B (CD19-CD20)','$80,00'],['Linfocitos NK (CD16-CD56)','$48,30'],['Lipoproteína A','$16,00'],['Litio','$16,00'],['Lactoferrina','$20,00'],['Norovirus','$40,00'],['Osmolalidad','$14,49'],['Osteocalcina','$50,72'],['Oxalato urinario','$46,20'],['Opiáceos cuantitativa','$11,59'],['Plaquetas','$6,00'],['Prueba de Coombs directa','$9,00'],['Prueba de Coombs indirecta','$9,00'],['Parasitoscópico concentración (heces)','$6,00'],['PSA total','$16,93'],['PSA libre','$25,30'],['Potasio','$4,00'],['Pro-BNP','$65,00'],['Procalcitonina','$74,38'],['Prealbúmina','$30,00'],['Prolactina','$12,00'],['Progesterona','$12,00'],['Rotavirus','$13,00'],['R. de Widal y Weill Felix','$7,00'],['Factor reumatoideo por nefelometría','$16,00'],['RPR','$5,00'],['Rubeola IgG','$16,72'],['Rubeola IgM','$16,72'],['Sangre oculta - HB humana','$7,10'],['Sodio','$4,00'],['Sodio (orina)','$4,00'],['Strept-A','$13,20'],['Salmonella antígeno','$14,00'],['Urea','$3,30'],['Urocultivo (orina)','$18,00'],['Urea 24h','$6,30'],['V.D.R.L.','$5,50'],['Vitamina B12','$13,00'],['VLDL colesterol','$6,30'],['V.D.R.L. cuantitativo','$9,00'],['Varicela zóster IgG','$28,00'],['Varicela zóster IgM','$21,25'],['Vitamina D total','$32,00'],['Vitamina E','$65,10'],['Virus sincitial respiratorio','$36,75'],['Ziehl Neelsen','$7,20'],['Zinc','$35,00'],['Zika virus IgG','$100,49'],['Zika virus IgM','$75,74']
+].map(([name,price])=>({name,price}));
+
+const faqs=[
+['¿Cómo descargo mis resultados?','LABS indica que los resultados se consultan mediante su aplicación. La información publicada señala que el usuario ingresa con el correo indicado por recepción y, si no modificó la clave, con su número de cédula; luego debe seleccionar “Mis resultados”.'],
+['¿Necesito estar en ayunas para todos los exámenes de sangre?','No. LABS señala como ejemplos de pruebas que no requieren ayuno el hemograma, dímero D y pruebas de embarazo, salvo indicación médica.'],
+['¿Qué pruebas requieren ayuno?','Entre las pruebas señaladas por LABS están colesterol total, HDL, LDL, VLDL, triglicéridos, glucosa, HOMA-IR y determinados test de aliento. Algunas pruebas pueden requerir preparación adicional.'],
+['¿Debo agendar mis exámenes bajo una hora específica?','Depende del examen. LABS recomienda consultar telefónicamente para confirmar la preparación y horario correspondiente.'],
+['¿Realizan servicio a domicilio?','Sí. La información publicada por LABS indica servicio a domicilio en Guayaquil y Durán; para otras ciudades recomienda consultar con la sucursal. Generalmente debe agendarse con anticipación.'],
+['¿Cómo me preparo para un espermatograma?','LABS indica que no requiere ayuno, que debe existir abstinencia de 5 días y que la muestra debe tomarse en el laboratorio para preservar sus características.'],
+['¿En qué tiempo se entrega el resultado del espermatograma?','La información publicada por LABS señala 2 días hábiles.'],
+['¿Para qué sirve el espermatograma?','Evalúa características relacionadas con la cantidad y calidad del semen y los espermatozoides.'],
+['¿Para qué sirve la hormona antimülleriana?','LABS explica que se utiliza para evaluar la reserva ovárica mediante una muestra de sangre y señala que no requiere ayuno.'],
+['¿Qué se analiza en un hemograma?','LABS explica que evalúa el estado general de la sangre y componentes como glóbulos rojos, glóbulos blancos, hemoglobina, hematocrito y plaquetas, entre otros.'],
+['¿Hasta qué hora puedo acercarme al laboratorio?','El horario depende de la ciudad y sucursal. Revisa la sección Sedes de esta página antes de acudir.'],
+['¿En qué tiempo obtendré mis resultados?','El tiempo depende del examen. LABS indica que algunas pruebas se procesan en pocas horas y otras, como determinados cultivos, requieren más tiempo.'],
+['¿Cuáles son los exámenes de tiroides?','LABS menciona TSH, T3 libre y total, y T4 libre y total como pruebas utilizadas para evaluar hormonas tiroideas.'],
+['¿Cuáles son los exámenes de la enfermedad celíaca?','LABS menciona DQ2 y DQ8 como pruebas de sangre solicitadas para el diagnóstico de enfermedad celíaca y señala que no requieren ayuno.'],
+['¿Cuáles son las formas de pago?','La información publicada por LABS menciona efectivo, tarjeta de crédito, débito, transferencia y cheque.'],
+['¿Cómo recojo una muestra de orina de 24 horas?','LABS explica que debe recogerse toda la orina durante 24 horas: se desecha la primera muestra al iniciar y desde entonces se recoge todo hasta la misma hora del día siguiente. Ante dudas, recomienda consultar al laboratorio.']
+];
+
+function renderExams(list, targetId='examGrid', limit=18){const target=document.getElementById(targetId);if(!target)return;const shown=list.slice(0,limit);target.innerHTML=shown.map((e,i)=>`<article class="exam-card"><span>${String(i+1).padStart(2,'0')}</span><div><b>${e.name}</b><small>${e.price}</small></div><button data-add="${e.name}">+</button></article>`).join('');const count=document.getElementById('examCount');if(count)count.textContent=`${list.length} coincidencias`}
+renderExams(exams);
+
+document.getElementById('examSearch')?.addEventListener('input',e=>{const q=e.target.value.toLowerCase().trim();renderExams(exams.filter(x=>x.name.toLowerCase().includes(q)), 'examGrid', 30)});
+
+function renderFaq(){const box=document.getElementById('faqList');box.innerHTML=faqs.map(([q,a])=>`<details><summary>${q}<span>＋</span></summary><p>${a}</p></details>`).join('')}
+renderFaq();
+
+const modals=[...document.querySelectorAll('.modal')];
+function openModal(id){const m=document.getElementById(id);if(!m)return;m.classList.add('show');m.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');if(id==='cotizador'){renderQuote(exams)}}
+function closeModal(m){m.classList.remove('show');m.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')}
+document.addEventListener('click',e=>{const open=e.target.closest('[data-open]');if(open){e.preventDefault();openModal(open.dataset.open)}if(e.target.closest('.modal-close'))closeModal(e.target.closest('.modal'));if(e.target.classList.contains('modal'))closeModal(e.target);const add=e.target.closest('[data-add]');if(add){openModal('cotizador');setTimeout(()=>{const q=document.getElementById('quoteSearch');q.value=add.dataset.add;renderQuote(exams.filter(x=>x.name.toLowerCase().includes(add.dataset.add.toLowerCase())));},30)}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')modals.forEach(closeModal)});
+
+function renderQuote(list){const box=document.getElementById('quoteResults');box.innerHTML=list.slice(0,40).map(e=>`<label class="quote-item"><input type="checkbox" value="${e.name}" data-price="${e.price}"><span>${e.name}</span><b>${e.price}</b></label>`).join('')||'<p>No encontramos coincidencias.</p>'}
+document.getElementById('quoteSearch')?.addEventListener('input',e=>{const q=e.target.value.toLowerCase().trim();renderQuote(exams.filter(x=>x.name.toLowerCase().includes(q)))});
+
+document.getElementById('quoteForm')?.addEventListener('submit',e=>{e.preventDefault();const selected=[...document.querySelectorAll('#quoteResults input:checked')].map(x=>x.value);document.getElementById('quoteMsg').textContent=selected.length?`Solicitud preparada con ${selected.length} examen(es). Para el envío/confirmación final se requiere la conexión con el backend de cotización de LABS.`:'Selecciona al menos un examen antes de continuar.'});
+
+document.getElementById('workForm')?.addEventListener('submit',e=>{e.preventDefault();const file=e.target.cv.files[0];const msg=document.getElementById('workMsg');if(!file)return;if(file.size>2*1024*1024){msg.textContent='El archivo supera el límite de 2 MB indicado por LABS.';return}const ext=file.name.split('.').pop().toLowerCase();if(!['doc','docx','pdf'].includes(ext)){msg.textContent='Formato no permitido. Usa doc, docx o pdf.';return}msg.textContent='Postulación preparada. El envío automático requiere conectar el formulario con el backend de selección de LABS.'});
+
+const sections=[...document.querySelectorAll('main section[id]')],links=[...document.querySelectorAll('#mainNav>a')];
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-35% 0px -55% 0px'});sections.forEach(s=>observer.observe(s));
