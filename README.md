@@ -1,13 +1,12 @@
-# LABS — web ajustada
+# LABS — correcciones finales
 
-## Ajuste del cotizador
-El apartado **“Consulta y cotiza tus exámenes”** ya no muestra todo el catálogo abierto dentro de la página principal.
-
-Ahora:
-1. La sección presenta únicamente una tarjeta introductoria.
-2. El usuario pulsa **“Cotizar y consultar exámenes”**.
-3. Se abre el panel de cotización.
-4. Dentro del panel aparecen todos los exámenes, con selección y total estimado.
-5. El usuario puede seleccionar los exámenes que desea cotizar.
-
-El resto del diseño y contenido del proyecto se mantiene sin rediseño.
+- Cotizador cerrado por defecto y abre mediante “Cotizar y consultar exámenes”.
+- Catálogo desplegable dentro de la nueva web, sin abrirlo permanentemente.
+- Verde como color principal y naranja como acento.
+- Estado activo del menú con acento naranja.
+- Menú móvil con las mismas opciones de desktop, cierre automático y navegación por secciones.
+- Servicios y Sedes incorporados en el orden principal.
+- Guayaquil identificada como sede principal.
+- Traducción ES/EN ampliada para contenido estático, dinámico, formularios, notas, sedes y cotizador.
+- Responsive para desktop, tablet y móvil.
+- Se mantiene el enlace externo de resultados a app.labs.ec por ser una plataforma independiente.

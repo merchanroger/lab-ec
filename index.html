@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<a class="skip" href="#contenido">Ir al contenido</a>
+<a class="skip" href="#contenido" data-i18n="skipContent">Ir al contenido</a>
 <div class="topline"><div class="wrap topinner"><span>HUMANLABS · MEDICINA DIAGNÓSTICA</span><div><a href="tel:+593985090215">(+593) 98 509 0215</a><a href="mailto:info@labs.ec">info@labs.ec</a></div></div></div>
 
 <header class="header"><div class="wrap headerin">
@@ -17,6 +17,9 @@
 <button class="menubtn" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menú">☰</button>
 <nav id="mainNav" aria-label="Navegación principal">
 <a href="#inicio" data-i18n="navHome">Inicio</a>
+<a href="#servicios" data-i18n="navServices">Servicios</a>
+<a href="#cotizador" data-i18n="navQuote">Cotiza y consulta</a>
+<a href="#sedes" data-i18n="navLocations">Sedes</a>
 <a href="#nosotros" data-i18n="navAbout">Nosotros</a>
 <a href="#notas" data-i18n="navNotes">Notas de salud</a>
 <a href="#contacto" data-i18n="navContact">Contacto</a>
@@ -31,47 +34,50 @@
 <h1 data-i18n="heroTitle">Resultados que ayudan a cuidar lo que más importa.</h1>
 <p class="lead" data-i18n="heroLead">Servicios de laboratorio clínico confiables, oportunos y orientados a apoyar las decisiones médicas y el bienestar de nuestros pacientes.</p>
 <div class="heroActions"><a class="btn primary" href="#cotizador" data-i18n="quoteExam">Cotizar exámenes</a><a class="btn ghost" href="#contacto" data-i18n="findLocation">Encontrar una sede</a></div>
-</div><div class="heroVisual"><div class="orb orb1"></div><div class="orb orb2"></div><div class="labcard"><span class="mini">LABORATORIO CLÍNICO</span><strong>Precisión<br>en cada muestra.</strong><div class="line"></div><span>Hematología · Química clínica · Hormonas · Uroanálisis</span></div></div></div></section>
+</div><div class="heroVisual"><div class="orb orb1"></div><div class="orb orb2"></div><div class="labcard"><span class="mini" data-i18n="labMini">LABORATORIO CLÍNICO</span><strong data-i18n="heroCardTitle">Precisión<br>en cada muestra.</strong><div class="line"></div><span data-i18n="heroCardList">Hematología · Química clínica · Hormonas · Uroanálisis</span></div></div></div></section>
 
-<section class="about wrap" id="nosotros"><div class="aboutGrid"><div><p class="sectionTag">HUMANLABS MEDICINA DIAGNÓSTICA</p><h2 data-i18n="aboutTitle">Su laboratorio de confianza.</h2>
+<section class="services wrap" id="servicios"><div class="sectionHead"><div><p class="sectionTag" data-i18n="servicesTag">SERVICIOS</p><h2 data-i18n="servicesTitle">Atención y diagnóstico.</h2></div><p data-i18n="servicesIntro">Servicios de laboratorio clínico orientados a una atención confiable y oportuna.</p></div><div class="serviceGrid"><article class="serviceCard"><span>01</span><h3 data-i18n="service1Title">Exámenes de laboratorio</h3><p data-i18n="service1Text">Análisis clínicos en hematología, coagulación, química clínica, hormonas, uroanálisis y parasitología.</p></article><article class="serviceCard"><span>02</span><h3 data-i18n="service2Title">Toma de muestras</h3><p data-i18n="service2Text">Toma y procesamiento de muestras con procesos preanalíticos, analíticos y postanalíticos.</p></article><article class="serviceCard"><span>03</span><h3 data-i18n="service3Title">Toma de muestras a domicilio</h3><p data-i18n="service3Text">Servicio a domicilio disponible en Guayaquil y Durán; para otras ciudades, consulta con la sucursal.</p></article><article class="serviceCard"><span>04</span><h3 data-i18n="service4Title">Resultados</h3><p data-i18n="service4Text">Consulta tus resultados mediante la plataforma de resultados de LABS.</p><a class="textLink" href="https://app.labs.ec/" target="_blank" rel="noopener" data-i18n="service4Link">Consultar resultados ↗</a></article></div></section>
+
+<section class="about wrap" id="nosotros"><div class="aboutGrid"><div><p class="sectionTag" data-i18n="aboutTag">HUMANLABS MEDICINA DIAGNÓSTICA</p><h2 data-i18n="aboutTitle">Su laboratorio de confianza.</h2>
 <p>HUMANLABS MEDICINA DIAGNÓSTICA se establece con el fin de brindar un servicio completo de exámenes de laboratorio. Su misión es ofrecer análisis y diagnósticos clínicos confiables y oportunos, con altos niveles de ética y calidad.</p></div>
-<div class="accordions"><details open><summary>Misión</summary><p>Otorgamos servicios de análisis y diagnósticos clínicos confiables, oportunos con altos niveles de ética y calidad, apoyando a médicos y empresas para buscar soluciones tempranas que ayuden al bienestar del paciente.</p></details>
-<details><summary>Visión</summary><p>Ampliar la cartera de exámenes clínicos, aumentar la satisfacción de nuestros pacientes y llegar a ser un laboratorio referente a nivel nacional con presencia en puntos estratégicos del país.</p></details>
-<details><summary>Alcance</summary><p>Procesos preanalíticos, analíticos y postanalíticos en hematología, coagulación, química clínica, hormonas, uroanálisis y parasitología aplicados al Laboratorio Central.</p></details>
-<details><summary>Política de calidad</summary><p>Calidad, calidez, puntualidad, confidencialidad, personal capacitado, mejora continua e información clínicamente útil para la toma de decisiones médicas.</p></details></div></div></section>
+<div class="accordions"><details open><summary data-i18n="missionTitle">Misión</summary><p data-i18n="missionText">Otorgamos servicios de análisis y diagnósticos clínicos confiables, oportunos con altos niveles de ética y calidad, apoyando a médicos y empresas para buscar soluciones tempranas que ayuden al bienestar del paciente.</p></details>
+<details><summary data-i18n="visionTitle">Visión</summary><p data-i18n="visionText">Ampliar la cartera de exámenes clínicos, aumentar la satisfacción de nuestros pacientes y llegar a ser un laboratorio referente a nivel nacional con presencia en puntos estratégicos del país.</p></details>
+<details><summary data-i18n="scopeTitle">Alcance</summary><p data-i18n="scopeText">Procesos preanalíticos, analíticos y postanalíticos en hematología, coagulación, química clínica, hormonas, uroanálisis y parasitología aplicados al Laboratorio Central.</p></details>
+<details><summary data-i18n="qualityTitle">Política de calidad</summary><p data-i18n="qualityText">Calidad, calidez, puntualidad, confidencialidad, personal capacitado, mejora continua e información clínicamente útil para la toma de decisiones médicas.</p></details></div></div></section>
 
-<section class="catalog wrap" id="cotizador"><div class="sectionHead"><div><p class="sectionTag">COTIZADOR</p><h2 data-i18n="quoteTitle">Consulta y cotiza tus exámenes.</h2></div><p data-i18n="quoteIntro">Un solo punto para buscar, revisar y seleccionar los exámenes disponibles.</p></div>
+<section class="catalog wrap" id="cotizador"><div class="sectionHead"><div><p class="sectionTag" data-i18n="quoteTag">COTIZADOR</p><h2 data-i18n="quoteTitle">Consulta y cotiza tus exámenes.</h2></div><p data-i18n="quoteIntro">Un solo punto para buscar, revisar y seleccionar los exámenes disponibles.</p></div>
 <div class="quoteIntroCard">
   <div class="quoteIntroIcon">⌕</div>
   <div class="quoteIntroCopy">
-    <span class="quoteIntroLabel">CATÁLOGO DE EXÁMENES</span>
-    <h3>Consulta todos los exámenes disponibles</h3>
-    <p>Haz clic en el botón para desplegar el catálogo completo, buscar un examen y seleccionar los que deseas cotizar.</p>
+    <span class="quoteIntroLabel" data-i18n="catalogLabel">CATÁLOGO DE EXÁMENES</span>
+    <h3 data-i18n="catalogTitle">Consulta todos los exámenes disponibles</h3>
+    <p data-i18n="catalogText">Haz clic en el botón para desplegar el catálogo completo, buscar un examen y seleccionar los que deseas cotizar.</p>
   </div>
   <button class="btn primary" id="openQuote" data-i18n="quoteSelected">Cotizar y consultar exámenes →</button>
 </div></section>
+
+<section class="locations wrap" id="sedes"><div class="sectionHead"><div><p class="sectionTag" data-i18n="locationsTag">SEDES</p><h2 data-i18n="locationsTitle">Encuentra una sede.</h2></div><p data-i18n="locationsIntro">Consulta dirección y horarios de atención.</p></div><div class="locationLayout"><div class="locationTabs" id="locationTabs"></div><div class="locationDetail" id="locationDetail"></div></div></section>
 
 <section class="notes wrap" id="notas"><div class="sectionHead"><div><p class="sectionTag">NOTAS DE SALUD</p><h2 data-i18n="notesTitle">Información de salud publicada por LABS.</h2></div><p data-i18n="notesIntro">Contenido educativo publicado por LABS para pacientes y familias.</p></div>
 <div class="noteGrid" id="noteGrid"></div></section>
 
 <section class="contact" id="contacto"><div class="wrap">
-<div class="contactGrid"><div><p class="eyebrow">CONTACTO</p><h2 data-i18n="contactTitle">Estamos para ayudarte.</h2>
-<p>Av. Abel Romeo Castillo y Juan Tanca Marengo, Torre Médica 2, piso 4, consultorios 417 y 418.</p>
-<div class="contactLinks"><a href="tel:+593985090215">+593 98 509 0215</a><a href="mailto:info@labs.ec">info@labs.ec</a><a href="https://wa.me/593985090215" target="_blank" rel="noopener">Escribir por WhatsApp →</a></div></div>
-<div class="contactPanel"><span>LABS · MEDICINA DIAGNÓSTICA</span><h3>Sedes y servicios</h3><p>Consulta las sedes publicadas y sus horarios de atención.</p><div class="locationTabs" id="locationTabs"></div><div class="locationDetail compact" id="locationDetail"></div></div></div>
-<div class="serviceStrip"><div><p class="sectionTag">SERVICIOS</p><h3>Atención y diagnóstico</h3></div><div class="serviceMini"><span>Exámenes de laboratorio</span><span>Resultados</span><span>Toma de muestras a domicilio</span><span>Atención al usuario</span></div></div>
+<div class="contactGrid"><div><p class="eyebrow" data-i18n="contactTag">CONTACTO</p><h2 data-i18n="contactTitle">Estamos para ayudarte.</h2>
+<p data-i18n="contactAddress">Av. Abel Romeo Castillo y Juan Tanca Marengo, Torre Médica 2, piso 4, consultorios 417 y 418.</p>
+<div class="contactLinks"><a href="tel:+593985090215">+593 98 509 0215</a><a href="mailto:info@labs.ec">info@labs.ec</a><a href="https://wa.me/593985090215" target="_blank" rel="noopener" data-i18n="whatsappLink">Escribir por WhatsApp →</a></div></div>
+<div class="contactPanel"><span data-i18n="contactPanelBrand">LABS · MEDICINA DIAGNÓSTICA</span><h3 data-i18n="contactPanelTitle">Sedes y servicios</h3><p data-i18n="contactPanelText">Consulta las sedes publicadas y sus horarios de atención.</p><p data-i18n="locationsHint">Puedes consultar todas las sedes en la sección Sedes.</p><a class="textLink" href="#sedes" data-i18n="viewLocations">Ver sedes →</a></div></div>
 </div></section>
 </main>
 
 <footer><div class="wrap footerGrid">
 <div class="logo footerLogo"><span>LABS</span><small>MEDICINA DIAGNÓSTICA</small></div>
-<div><b>EXPLORA</b><a href="#inicio">Inicio</a><a href="#nosotros">Nosotros</a><a href="#notas">Notas de salud</a><a href="#contacto">Contacto</a><a href="mailto:info@labs.ec?subject=Trabaja%20con%20LABS">Trabaja con nosotros</a></div>
-<div><b>LABS</b><a href="#nosotros">Quiénes somos</a><a href="#contacto">Calidad</a><a href="#contacto">Sedes</a><a href="#contacto">Servicios</a></div>
-<div><b>RESULTADOS</b><a href="https://app.labs.ec/" target="_blank" rel="noopener">Acceder a mis resultados ↗</a><b class="footerContactTitle">CONTACTO</b><a href="tel:+593985090215">+593 98 509 0215</a><a href="mailto:info@labs.ec">info@labs.ec</a></div>
+<div><b data-i18n="footerExplore">EXPLORA</b><a href="#inicio">Inicio</a><a href="#nosotros">Nosotros</a><a href="#notas">Notas de salud</a><a href="#contacto">Contacto</a><a href="mailto:info@labs.ec?subject=Trabaja%20con%20LABS" data-i18n="workWithUs">Trabaja con nosotros</a></div>
+<div><b data-i18n="footerLabs">LABS</b><a href="#nosotros" data-i18n="footerAbout">Quiénes somos</a><a href="#nosotros" data-i18n="footerQuality">Calidad</a><a href="#sedes" data-i18n="footerLocations">Sedes</a><a href="#servicios" data-i18n="footerServices">Servicios</a></div>
+<div><b data-i18n="footerResults">RESULTADOS</b><a href="https://app.labs.ec/" target="_blank" rel="noopener" data-i18n="footerAccessResults">Acceder a mis resultados ↗</a><b class="footerContactTitle" data-i18n="footerContact">CONTACTO</b><a href="tel:+593985090215">+593 98 509 0215</a><a href="mailto:info@labs.ec">info@labs.ec</a></div>
 </div>
-<div class="wrap copyright"><span>© 2026 HUMANLABS. Todos los derechos reservados.</span><span class="footerLegal"><a href="mailto:info@labs.ec?subject=Trabaja%20con%20LABS">Trabaja con nosotros</a><button class="footerLang" id="footerLanguage" type="button">ES | EN</button></span></div></footer>
+<div class="wrap copyright"><span data-i18n="copyright">© 2026 HUMANLABS. Todos los derechos reservados.</span><span class="footerLegal"><a href="mailto:info@labs.ec?subject=Trabaja%20con%20LABS" data-i18n="workWithUs">Trabaja con nosotros</a><button class="footerLang" id="footerLanguage" type="button">ES | EN</button></span></div></footer>
 
-<div class="modal" id="quoteModal" aria-hidden="true"><div class="modalBox"><button class="modalClose" id="closeQuote" aria-label="Cerrar">×</button><p class="sectionTag">COTIZACIÓN</p><h2>Selecciona tus exámenes</h2><p>Marca las pruebas que quieres incluir y completa tus datos.</p><div id="quoteItems" class="quoteItems"></div><div class="quoteTotal"><span>Total estimado</span><strong id="quoteTotal">$0,00</strong></div><form id="quoteForm"><input required name="name" placeholder="Nombre completo"><input required name="email" type="email" placeholder="Correo electrónico"><input name="phone" placeholder="Teléfono"><button class="btn primary" type="submit">Preparar solicitud</button></form><div id="quoteMsg" class="formMsg"></div></div></div>
+<div class="modal" id="quoteModal" aria-hidden="true"><div class="modalBox"><button class="modalClose" id="closeQuote" aria-label="Cerrar">×</button><p class="sectionTag" data-i18n="quoteModalTag">COTIZACIÓN</p><h2 data-i18n="quoteModalTitle">Selecciona tus exámenes</h2><p data-i18n="quoteModalIntro">Marca las pruebas que quieres incluir y completa tus datos.</p><div id="quoteItems" class="quoteItems"></div><div class="quoteTotal"><span data-i18n="quoteTotalLabel">Total estimado</span><strong id="quoteTotal">$0,00</strong></div><form id="quoteForm"><input required name="name" data-i18n-placeholder="namePlaceholder" placeholder="Nombre completo"><input required name="email" type="email" data-i18n-placeholder="emailPlaceholder" placeholder="Correo electrónico"><input name="phone" data-i18n-placeholder="phonePlaceholder" placeholder="Teléfono"><button class="btn primary" type="submit" data-i18n="prepareRequest">Preparar solicitud</button></form><div id="quoteMsg" class="formMsg"></div></div></div>
 <div class="modal" id="noteModal" aria-hidden="true"><div class="modalBox"><button class="modalClose" id="closeNote" aria-label="Cerrar">×</button><p class="sectionTag">NOTA DE SALUD · LABS</p><h2 id="noteModalTitle"></h2><p class="noteModalDate" id="noteModalDate"></p><div id="noteModalBody" class="noteModalBody"></div></div></div>
 <script src="script.js"></script>
 </body></html>

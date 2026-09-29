@@ -57,3 +57,13 @@
  .quoteIntroCard{grid-template-columns:1fr;padding:26px}
  .quoteIntroCard .btn{width:100%}
 }
+/* Ajustes finales de identidad y navegación: verde predominante + naranja como acento */
+:root{--accent:#f28c28;--accent-dark:#d96f12}
+.header nav a.active{color:var(--accent-dark);position:relative}
+.header nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--accent);border-radius:3px}
+.serviceGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+.serviceCard{border:1px solid var(--line);background:var(--surface);padding:28px;min-height:230px;position:relative}
+.serviceCard>span{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:1px}.serviceCard h3{font:700 20px/1.2 Manrope;margin:22px 0 10px}.serviceCard p{color:var(--muted);font-size:14px}.textLink{color:var(--brand-dark);font-weight:700;text-decoration:none}.textLink:hover{color:var(--accent-dark)}
+.locations{padding-top:90px;padding-bottom:90px}.locationLayout{display:grid;grid-template-columns:280px 1fr;gap:18px;margin-top:28px}.locationTabs{display:flex;flex-direction:column;gap:7px}.locationTabs button{border:1px solid var(--line);background:#fff;padding:14px;text-align:left;font:600 14px Inter;color:var(--ink);cursor:pointer}.locationTabs button.active{background:var(--brand);border-color:var(--brand);color:#fff}.locationDetail{border:1px solid var(--line);background:var(--surface);padding:34px}.locationDetail h4{font:800 28px Manrope;margin:0 0 12px}.locationBadge{display:inline-block;background:#fff3e5;color:var(--accent-dark);font-size:10px;font-weight:800;letter-spacing:1.2px;padding:7px 10px;margin-bottom:15px}.locationDetail p{color:var(--muted);max-width:720px}.locationDetail .hours{margin:22px 0;padding-top:18px;border-top:1px solid var(--line)}
+@media(max-width:900px){.serviceGrid{grid-template-columns:1fr 1fr}.locationLayout{grid-template-columns:1fr}.locationTabs{display:grid;grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.serviceGrid{grid-template-columns:1fr}.locationTabs{grid-template-columns:1fr}.quoteItems{grid-template-columns:1fr}.modalBox{padding:28px 20px}}
