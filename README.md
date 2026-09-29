@@ -1,16 +1,13 @@
-# LABS — Medicina Diagnóstica
+# LABS — web ajustada
 
-Versión actualizada de la web LABS con el diseño existente conservado y ajustes de estructura, navegación y contenido.
+## Ajuste del cotizador
+El apartado **“Consulta y cotiza tus exámenes”** ya no muestra todo el catálogo abierto dentro de la página principal.
 
-Cambios:
-- Menú principal simplificado: Inicio, Nosotros, Notas de salud, Contacto y Resultados.
-- Eliminados Encuentra tus exámenes y Preguntas frecuentes.
-- Un único punto de consulta/cotización de exámenes: Cotizador.
-- Notas de salud integradas con contenido publicado por LABS.
-- Contacto y sedes integrados en una sola sección.
-- Trabaja con nosotros tratado como enlace secundario en el footer.
-- Selector ES | EN preparado para la interfaz.
-- Portal real de resultados enlazado a https://app.labs.ec/
-- Responsive para escritorio, tablet y celular.
+Ahora:
+1. La sección presenta únicamente una tarjeta introductoria.
+2. El usuario pulsa **“Cotizar y consultar exámenes”**.
+3. Se abre el panel de cotización.
+4. Dentro del panel aparecen todos los exámenes, con selección y total estimado.
+5. El usuario puede seleccionar los exámenes que desea cotizar.
 
-Nota: el formulario de cotización sigue siendo frontend; para enviar solicitudes realmente a LABS debe conectarse al backend/API correspondiente.
+El resto del diseño y contenido del proyecto se mantiene sin rediseño.

@@ -44,3 +44,16 @@
  .serviceMini{grid-template-columns:1fr}
  .footerLegal{float:none;margin-top:15px;justify-content:flex-start;flex-wrap:wrap}
 }
+
+/* Cotizador cerrado por defecto: el catálogo completo aparece únicamente al pulsar el botón */
+.quoteIntroCard{margin-top:30px;padding:38px 42px;background:var(--surface);border:1px solid var(--line);display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center}
+.quoteIntroIcon{width:58px;height:58px;border-radius:50%;background:var(--soft);color:var(--brand);display:grid;place-items:center;font-size:28px}
+.quoteIntroCopy{min-width:0}
+.quoteIntroLabel{display:block;font-size:10px;letter-spacing:1.5px;font-weight:800;color:var(--brand);margin-bottom:7px}
+.quoteIntroCard h3{font:700 25px/1.15 Manrope;margin:0 0 7px}
+.quoteIntroCard p{margin:0;color:var(--muted);font-size:14px;line-height:1.6;max-width:650px}
+.quoteIntroCard .btn{white-space:nowrap}
+@media(max-width:700px){
+ .quoteIntroCard{grid-template-columns:1fr;padding:26px}
+ .quoteIntroCard .btn{width:100%}
+}

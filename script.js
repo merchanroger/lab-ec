@@ -32,10 +32,6 @@ const menu=document.querySelector('.menubtn');
 menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',open)});
 document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu?.setAttribute('aria-expanded','false')}));
 
-const examGrid=document.querySelector('#examGrid'), search=document.querySelector('#examSearch'), count=document.querySelector('#examCount');
-function renderExams(term=''){const q=term.trim().toLowerCase();const list=exams.filter(x=>x.name.toLowerCase().includes(q));count.textContent=`${list.length} examen${list.length===1?'':'es'} disponible${list.length===1?'':'s'}`;examGrid.innerHTML=list.map((x,i)=>`<button class="exam" type="button" data-exam="${i}"><strong>${x.name}</strong><em>${x.price}</em></button>`).join('')||'<div class="exam"><strong>No encontramos ese examen.</strong><em>—</em></div>'}
-renderExams(); search?.addEventListener('input',e=>renderExams(e.target.value)); document.querySelector('#clearSearch')?.addEventListener('click',()=>{search.value='';renderExams()});
-examGrid?.addEventListener('click',e=>{const card=e.target.closest('[data-exam]');if(!card)return;selected.add(+card.dataset.exam);renderQuote();modal.classList.add('show');modal.setAttribute('aria-hidden','false')});
 
 const tabs=document.querySelector('#locationTabs'),detail=document.querySelector('#locationDetail');
 const locationKeys=Object.keys(locations);
@@ -48,8 +44,6 @@ function openNote(i){const n=notes[i];document.querySelector('#noteModalTitle').
 noteGrid.addEventListener('click',e=>{const b=e.target.closest('[data-note]');if(b)openNote(+b.dataset.note)});
 document.querySelector('#closeNote')?.addEventListener('click',()=>{noteModal.classList.remove('show');noteModal.setAttribute('aria-hidden','true')});
 
-const modal=document.querySelector('#quoteModal'),items=document.querySelector('#quoteItems'),totalEl=document.querySelector('#quoteTotal');
-let selected=new Set();
 function renderQuote(){items.innerHTML=exams.map((x,i)=>`<label class="quoteItem"><input type="checkbox" data-i="${i}" ${selected.has(i)?'checked':''}> <span>${x.name}<br><b>${x.price}</b></span></label>`).join('');items.querySelectorAll('input').forEach(c=>c.addEventListener('change',e=>{const i=+e.target.dataset.i;e.target.checked?selected.add(i):selected.delete(i);updateTotal()}));updateTotal()}
 function updateTotal(){const sum=[...selected].reduce((a,i)=>a+Number(exams[i].price.replace('$','').replace(',','.')),0);totalEl.textContent=`$${sum.toFixed(2).replace('.',',')}`}
 document.querySelector('#openQuote')?.addEventListener('click',()=>{modal.classList.add('show');modal.setAttribute('aria-hidden','false');renderQuote()});document.querySelector('#closeQuote')?.addEventListener('click',()=>{modal.classList.remove('show');modal.setAttribute('aria-hidden','true')});
