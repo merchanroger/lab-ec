@@ -19,23 +19,6 @@ const notes=[
 {title:'¿Cómo prevenir enfermedades del riñón con exámenes rutinarios?',date:'28 Mar 2022',tag:'LABS',body:'LABS aborda la prevención y el valor de los exámenes rutinarios relacionados con la salud renal.'}
 ];
 
-
-const notesEN=[
-{title:'Stress: A silent enemy affecting our physical and mental health',tag:'HEALTH',body:'LABS educational content for patients about stress and its effects on physical, emotional and psychological wellbeing.'},
-{title:'Liver, the body’s natural filter',tag:'LIVER · LABS',body:'LABS explains the role of the liver in metabolic activity, bile production, blood processing and nutrient storage, as well as liver function testing.'},
-{title:'Kidneys: the hidden heroes of our body',tag:'TESTS · HEALTH',body:'LABS addresses kidney care and highlights hydration, exercise and a lower-salt diet.'},
-{title:'4 symptoms you should know about dengue',tag:'HEALTH',body:'LABS health note about symptoms to know in connection with dengue.'},
-{title:'Losing weight: which laboratory tests do I need?',tag:'TESTS · HEALTH',body:'LABS content about laboratory tests that may form part of an evaluation related to weight loss.'},
-{title:'7 basic tests you should have during the year',tag:'TESTS · HEALTH',body:'LABS educational content about basic laboratory tests and their role in health care.'},
-{title:'How can tests reveal the impact of stress on your health?',tag:'TESTS · HEALTH',body:'LABS explains the relationship between stress and information that certain laboratory tests can provide.'},
-{title:'Breast cancer, the third leading cause of death in women',tag:'HEALTH',body:'Health content published by LABS about breast cancer.'},
-{title:'Intolerances vs. behaviors: what is the relationship?',tag:'HEALTH',body:'LABS note about intolerances and health-related behaviors.'},
-{title:'Tests to detect fatty liver',tag:'LABS · HEALTH',body:'LABS content about laboratory tests related to detecting fatty liver.'},
-{title:'Dizziness and headache? It could be fatty liver.',tag:'LABS · HEALTH',body:'LABS note about symptoms and their possible relationship with fatty liver.'},
-{title:'Respiratory syncytial virus, the chameleon of a common cold',tag:'HEALTH',body:'LABS educational content about respiratory syncytial virus.'},
-{title:'How to prevent kidney disease with routine tests',tag:'LABS',body:'LABS addresses prevention and the value of routine tests related to kidney health.'}
-];
-
 const locations={
   guayaquil:{city:'Guayaquil',label:'Sede principal',address:'Av. Abel Romeo Castillo y Juan Tanca Marengo, Torre Médica 2, piso 4, consultorios 417 y 418.',hours:'LUN–VIE 06h30–18h00 · SAB 06h30–12h00'},
   quito:{city:'Quito',address:'Av. Mariana de Jesús OE7-02 y Nuño de Valderrama. Edificio CITIMED, Planta Baja Local 7.',hours:'LUN–VIE 07h00–16h00'},
@@ -46,39 +29,175 @@ const locations={
 
 const nav=document.querySelector('#mainNav');
 const menu=document.querySelector('.menubtn');
-menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',open)});
-document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('#mainNav a').forEach(x=>x.classList.remove('active'));if(a.getAttribute('href')?.startsWith('#'))a.classList.add('active');nav.classList.remove('open');menu?.setAttribute('aria-expanded','false')}));
-const sections=[...document.querySelectorAll('main section[id]')];const navLinks=[...document.querySelectorAll('#mainNav a[href^="#"]')];const activeObserver=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const a=navLinks.find(x=>x.getAttribute('href')==='#'+e.target.id);if(a){navLinks.forEach(x=>x.classList.remove('active'));a.classList.add('active')}}}),{rootMargin:'-35% 0px -55% 0px',threshold:0});sections.forEach(sec=>activeObserver.observe(sec));
 
+// Navegación móvil: abre/cierra y se cierra automáticamente al elegir una sección.
+menu?.addEventListener('click',()=>{
+  const open=nav.classList.toggle('open');
+  menu.setAttribute('aria-expanded',String(open));
+});
+document.querySelectorAll('#mainNav a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{
+  nav.classList.remove('open');
+  menu?.setAttribute('aria-expanded','false');
+}));
 
-const tabs=document.querySelector('#locationTabs'),detail=document.querySelector('#locationDetail');
+// Sedes: solo se muestra la información de la sede seleccionada.
+const tabs=document.querySelector('#locationTabs');
+const detail=document.querySelector('#locationDetail');
 const locationKeys=Object.keys(locations);
-function showLocation(key){const x=locations[key];tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.key===key));const main=x.label?`<span class="locationBadge">${currentLang==='en'?'MAIN LOCATION':'SEDE PRINCIPAL'}</span>`:' ';detail.innerHTML=`<h4>${x.city}</h4>${main}<p>${x.address}</p><div class="hours"><b class="i18n-hours">Horario</b><br>${x.hours}</div><p><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.address)}" target="_blank" rel="noopener" class="mapLink">Ver ubicación en Google Maps →</a></p>`}
-tabs.innerHTML=locationKeys.map(k=>`<button type="button" data-key="${k}">${locations[k].city}</button>`).join('');tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(b)showLocation(b.dataset.key)});showLocation('guayaquil');
+function showLocation(key){
+  const x=locations[key];
+  if(!x||!tabs||!detail)return;
+  tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.key===key));
+  detail.innerHTML=`<h3>${x.city}</h3>${x.label?`<p class="locationLabel">${x.label}</p>`:''}<p>${x.address}</p><div class="hours"><b>${currentLang==='en'?'Hours':'Horario'}</b><br>${x.hours}</div><p><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.address)}" target="_blank" rel="noopener">${currentLang==='en'?'Open in Google Maps →':'Ver ubicación en Google Maps →'}</a></p>`;
+}
+if(tabs){
+  tabs.innerHTML=locationKeys.map(k=>`<button type="button" data-key="${k}" aria-label="${locations[k].city}">${locations[k].city}</button>`).join('');
+  tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(b)showLocation(b.dataset.key)});
+}
 
-const noteGrid=document.querySelector('#noteGrid'), noteModal=document.querySelector('#noteModal');
-function renderNotes(){const data=currentLang==='en'?notesEN:notes;noteGrid.innerHTML=data.slice(0,6).map((n,i)=>`<button class="noteCard" type="button" data-note="${i}"><small>${n.date||notes[i].date} · ${n.tag}</small><h3>${n.title}</h3><span>${currentLang==='en'?'Read note →':'Leer nota →'}</span></button>`).join('')}
-renderNotes();
-function openNote(i){const n=(currentLang==='en'?notesEN:notes)[i];document.querySelector('#noteModalTitle').textContent=n.title;document.querySelector('#noteModalDate').textContent=(n.date||notes[i].date)+' · '+n.tag;document.querySelector('#noteModalBody').textContent=n.body;noteModal.classList.add('show');noteModal.setAttribute('aria-hidden','false')}
-noteGrid.addEventListener('click',e=>{const b=e.target.closest('[data-note]');if(b)openNote(+b.dataset.note)});
-document.querySelector('#closeNote')?.addEventListener('click',()=>{noteModal.classList.remove('show');noteModal.setAttribute('aria-hidden','true')});
+// Notas de salud: tarjetas compactas y lectura completa en modal.
+const noteGrid=document.querySelector('#noteGrid');
+const noteModal=document.querySelector('#noteModal');
+function renderNotes(){
+  if(!noteGrid)return;
+  noteGrid.innerHTML=notes.slice(0,6).map((n,i)=>`<button class="noteCard" type="button" data-note="${i}"><small>${n.date} · ${n.tag}</small><h3>${n.title}</h3><span>${currentLang==='en'?'Read note →':'Leer nota →'}</span></button>`).join('');
+}
+function openNote(i){
+  const n=notes[i];
+  if(!n||!noteModal)return;
+  document.querySelector('#noteModalTitle').textContent=n.title;
+  document.querySelector('#noteModalDate').textContent=n.date+' · '+n.tag;
+  document.querySelector('#noteModalBody').textContent=n.body;
+  noteModal.classList.add('show');
+  noteModal.setAttribute('aria-hidden','false');
+}
+if(noteGrid){noteGrid.addEventListener('click',e=>{const b=e.target.closest('[data-note]');if(b)openNote(Number(b.dataset.note))});}
+document.querySelector('#closeNote')?.addEventListener('click',()=>{noteModal?.classList.remove('show');noteModal?.setAttribute('aria-hidden','true')});
 
-function renderQuote(){items.innerHTML=exams.map((x,i)=>`<label class="quoteItem"><input type="checkbox" data-i="${i}" ${selected.has(i)?'checked':''}> <span>${examName(x.name)}<br><b>${x.price}</b></span></label>`).join('');items.querySelectorAll('input').forEach(c=>c.addEventListener('change',e=>{const i=+e.target.dataset.i;e.target.checked?selected.add(i):selected.delete(i);updateTotal()}));updateTotal()}
-function updateTotal(){const sum=[...selected].reduce((a,i)=>a+Number(exams[i].price.replace('$','').replace(',','.')),0);totalEl.textContent=`$${sum.toFixed(2).replace('.',',')}`}
-document.querySelector('#openQuote')?.addEventListener('click',()=>{modal.classList.add('show');modal.setAttribute('aria-hidden','false');renderQuote()});document.querySelector('#closeQuote')?.addEventListener('click',()=>{modal.classList.remove('show');modal.setAttribute('aria-hidden','true')});
+// Cotizador: catálogo cerrado por defecto, búsqueda, selección, resumen, total y envío por correo.
+const modal=document.querySelector('#quoteModal');
+const items=document.querySelector('#quoteItems');
+const totalEl=document.querySelector('#quoteTotal');
+const selectedItems=document.querySelector('#selectedItems');
+const selectedCount=document.querySelector('#selectedCount');
+const quoteCount=document.querySelector('#quoteCount');
+const examSearch=document.querySelector('#examSearch');
+const clearExamSearch=document.querySelector('#clearExamSearch');
+const quoteMsg=document.querySelector('#quoteMsg');
+const selected=new Set();
+let quoteFilter='';
+
+function filteredExams(){
+  const q=quoteFilter.trim().toLowerCase();
+  return q?exams.filter(x=>x.name.toLowerCase().includes(q)):exams;
+}
+function priceNumber(value){return Number(value.replace('$','').replace(',','.').trim())||0;}
+function formatMoney(value){return `$${value.toFixed(2).replace('.',',')}`;}
+function updateTotal(){
+  const sum=[...selected].reduce((total,i)=>total+priceNumber(exams[i].price),0);
+  if(totalEl)totalEl.textContent=formatMoney(sum);
+  if(selectedCount)selectedCount.textContent=String(selected.size);
+}
+function renderSelected(){
+  if(!selectedItems)return;
+  if(!selected.size){
+    selectedItems.innerHTML=`<p>${currentLang==='en'?'No tests selected yet.':'Aún no has seleccionado exámenes.'}</p>`;
+    updateTotal();
+    return;
+  }
+  selectedItems.innerHTML=[...selected].map(i=>`<div class="selectedItem"><span>${exams[i].name}<b>${exams[i].price}</b></span><button type="button" data-remove="${i}" aria-label="${currentLang==='en'?'Remove':'Quitar'} ${exams[i].name}">×</button></div>`).join('');
+  updateTotal();
+}
+function renderQuote(){
+  if(!items)return;
+  const visible=filteredExams();
+  items.innerHTML=visible.length?visible.map(x=>{
+    const i=exams.indexOf(x);
+    return `<label class="quoteItem"><input type="checkbox" data-i="${i}" ${selected.has(i)?'checked':''}><span>${x.name}<b>${x.price}</b></span></label>`;
+  }).join(''):`<div class="quoteEmpty">${currentLang==='en'?'No tests match your search.':'No se encontraron exámenes con esa búsqueda.'}</div>`;
+  items.querySelectorAll('input[data-i]').forEach(c=>c.addEventListener('change',e=>{
+    const i=Number(e.target.dataset.i);
+    if(e.target.checked)selected.add(i);else selected.delete(i);
+    renderSelected();
+  }));
+  if(quoteCount)quoteCount.textContent=currentLang==='en'?`${visible.length} tests available`:`${visible.length} exámenes disponibles`;
+  renderSelected();
+}
+function openQuote(){
+  modal?.classList.add('show');
+  modal?.setAttribute('aria-hidden','false');
+  quoteMsg.textContent='';
+  renderQuote();
+  setTimeout(()=>examSearch?.focus(),50);
+}
+function closeQuote(){
+  modal?.classList.remove('show');
+  modal?.setAttribute('aria-hidden','true');
+}
+document.querySelector('#openQuote')?.addEventListener('click',openQuote);
+document.querySelector('#closeQuote')?.addEventListener('click',closeQuote);
+selectedItems?.addEventListener('click',e=>{
+  const b=e.target.closest('[data-remove]');
+  if(!b)return;
+  selected.delete(Number(b.dataset.remove));
+  renderQuote();
+});
+examSearch?.addEventListener('input',e=>{quoteFilter=e.target.value;renderQuote()});
+clearExamSearch?.addEventListener('click',()=>{quoteFilter='';if(examSearch)examSearch.value='';renderQuote();examSearch?.focus()});
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m){m.classList.remove('show');m.setAttribute('aria-hidden','true')}}));
-document.querySelector('#quoteForm')?.addEventListener('submit',e=>{e.preventDefault();const data=new FormData(e.target);const names=[...selected].map(i=>examName(exams[i].name)).join(', ');document.querySelector('#quoteMsg').textContent=selected.size?translations[currentLang].requestPrepared.replace('{name}',data.get('name')).replace('{names}',names).replace('{total}',totalEl.textContent):translations[currentLang].selectExam});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal.show').forEach(m=>{m.classList.remove('show');m.setAttribute('aria-hidden','true')});nav?.classList.remove('open');menu?.setAttribute('aria-expanded','false')}});
 
-const examNameMap={
-'Ácido úrico':'Uric acid','Albúmina':'Albumin','Amilasa':'Amylase','Aglutinaciones febriles':'Febrile agglutinins','Ácido fólico':'Folic acid','Creatinina':'Creatinine','Colesterol total':'Total cholesterol','Colesterol HDL':'HDL cholesterol','Colesterol LDL':'LDL cholesterol','Calcio':'Calcium','Cloro':'Chloride','Insulina plasmática en ayunas':'Fasting plasma insulin','Lipasa':'Lipase','Plaquetas':'Platelets','Potasio':'Potassium','Prolactina':'Prolactin','Progesterona':'Progesterone','Sodio':'Sodium','Urea':'Urea','Urocultivo (orina)':'Urine culture','Vitamina B12':'Vitamin B12','Vitamina D total':'Total vitamin D','Vitamina E':'Vitamin E','Zinc':'Zinc','Rubeola IgG':'Rubella IgG','Rubeola IgM':'Rubella IgM','PSA total':'Total PSA','PSA libre':'Free PSA','Rotavirus':'Rotavirus','Norovirus':'Norovirus','Calprotectina':'Calprotectin','Ferritina':'Ferritin'
-};
-function examName(name){return currentLang==='en'?(examNameMap[name]||name):name}
+document.querySelector('#quoteForm')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!selected.size){quoteMsg.textContent=currentLang==='en'?'Select at least one test before continuing.':'Selecciona al menos un examen antes de continuar.';return;}
+  const data=new FormData(e.target);
+  const names=[...selected].map(i=>`${exams[i].name} (${exams[i].price})`).join(', ');
+  const total=totalEl.textContent;
+  const subject=currentLang==='en'?'LABS test quote request':'Solicitud de cotización de exámenes LABS';
+  const body=(currentLang==='en'?`Name: ${data.get('name')}\nEmail: ${data.get('email')}\nPhone: ${data.get('phone')||'Not provided'}\n\nTests: ${names}\nEstimated total: ${total}`:`Nombre: ${data.get('name')}\nCorreo: ${data.get('email')}\nTeléfono: ${data.get('phone')||'No indicado'}\n\nExámenes: ${names}\nTotal estimado: ${total}`);
+  quoteMsg.textContent=currentLang==='en'?'Your email application will open to send the request to LABS.':'Se abrirá tu aplicación de correo para enviar la solicitud a LABS.';
+  window.location.href=`mailto:info@labs.ec?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
+
 const translations={
-es:{skipContent:'Ir al contenido',whatsappLink:'Escribir por WhatsApp →',workWithUs:'Trabaja con nosotros',aboutTag:'HUMANLABS MEDICINA DIAGNÓSTICA',missionTitle:'Misión',missionText:'Otorgamos servicios de análisis y diagnósticos clínicos confiables, oportunos con altos niveles de ética y calidad, apoyando a médicos y empresas para buscar soluciones tempranas que ayuden al bienestar del paciente.',visionTitle:'Visión',visionText:'Ampliar la cartera de exámenes clínicos, aumentar la satisfacción de nuestros pacientes y llegar a ser un laboratorio referente a nivel nacional con presencia en puntos estratégicos del país.',scopeTitle:'Alcance',scopeText:'Procesos preanalíticos, analíticos y postanalíticos en hematología, coagulación, química clínica, hormonas, uroanálisis y parasitología aplicados al Laboratorio Central.',qualityTitle:'Política de calidad',qualityText:'Calidad, calidez, puntualidad, confidencialidad, personal capacitado, mejora continua e información clínicamente útil para la toma de decisiones médicas.',labMini:'LABORATORIO CLÍNICO',heroCardTitle:'Precisión en cada muestra.',heroCardList:'Hematología · Química clínica · Hormonas · Uroanálisis',quoteTag:'COTIZADOR',catalogLabel:'CATÁLOGO DE EXÁMENES',catalogTitle:'Consulta todos los exámenes disponibles',catalogText:'Haz clic en el botón para desplegar el catálogo completo, buscar un examen y seleccionar los que deseas cotizar.',contactPanelBrand:'LABS · MEDICINA DIAGNÓSTICA',contactPanelTitle:'Sedes y servicios',contactPanelText:'Consulta las sedes publicadas y sus horarios de atención.',contactAddress:'Av. Abel Romeo Castillo y Juan Tanca Marengo, Torre Médica 2, piso 4, consultorios 417 y 418.',footerExplore:'EXPLORA',footerLabs:'LABS',footerResults:'RESULTADOS',footerContact:'CONTACTO',footerAbout:'Quiénes somos',footerQuality:'Calidad',footerLocations:'Sedes',footerServices:'Servicios',footerAccessResults:'Acceder a mis resultados ↗',navHome:'Inicio',navServices:'Servicios',navQuote:'Cotiza y consulta',navLocations:'Sedes',navAbout:'Nosotros',navNotes:'Notas de salud',navContact:'Contacto',results:'Resultados ↗',heroEyebrow:'DIAGNÓSTICO CLÍNICO · ECUADOR',heroTitle:'Resultados que ayudan a cuidar lo que más importa.',heroLead:'Servicios de laboratorio clínico confiables, oportunos y orientados a apoyar las decisiones médicas y el bienestar de nuestros pacientes.',quoteExam:'Cotizar exámenes',findLocation:'Encontrar una sede',aboutTitle:'Su laboratorio de confianza.',servicesTag:'SERVICIOS',servicesTitle:'Atención y diagnóstico.',servicesIntro:'Servicios de laboratorio clínico orientados a una atención confiable y oportuna.',service1Title:'Exámenes de laboratorio',service1Text:'Análisis clínicos en hematología, coagulación, química clínica, hormonas, uroanálisis y parasitología.',service2Title:'Toma de muestras',service2Text:'Toma y procesamiento de muestras con procesos preanalíticos, analíticos y postanalíticos.',service3Title:'Toma de muestras a domicilio',service3Text:'Servicio a domicilio disponible en Guayaquil y Durán; para otras ciudades, consulta con la sucursal.',service4Title:'Resultados',service4Text:'Consulta tus resultados mediante la plataforma de resultados de LABS.',service4Link:'Consultar resultados ↗',quoteTitle:'Consulta y cotiza tus exámenes.',quoteIntro:'Un solo punto para buscar, revisar y seleccionar los exámenes disponibles.',quoteSelected:'Cotizar y consultar exámenes →',locationsTag:'SEDES',locationsTitle:'Encuentra una sede.',locationsIntro:'Consulta dirección y horarios de atención.',locationsHint:'Puedes consultar todas las sedes en la sección Sedes.',viewLocations:'Ver sedes →',notesTitle:'Información de salud publicada por LABS.',notesIntro:'Contenido educativo publicado por LABS para pacientes y familias.',contactTitle:'Estamos para ayudarte.',contactTag:'CONTACTO',quoteModalTag:'COTIZACIÓN',quoteModalTitle:'Selecciona tus exámenes',quoteModalIntro:'Marca las pruebas que quieres incluir y completa tus datos.',quoteTotalLabel:'Total estimado',namePlaceholder:'Nombre completo',emailPlaceholder:'Correo electrónico',phonePlaceholder:'Teléfono',prepareRequest:'Preparar solicitud',copyright:'© 2026 HUMANLABS. Todos los derechos reservados.',hoursLabel:'Horario',mapLink:'Ver ubicación en Google Maps →',requestPrepared:'Solicitud preparada para {name}. Exámenes: {names}. Total estimado: {total}. Para envío real, conecta este formulario con el backend de LABS.',selectExam:'Selecciona al menos un examen antes de continuar.'},
-en:{skipContent:'Skip to content',whatsappLink:'Write on WhatsApp →',workWithUs:'Work with us',aboutTag:'HUMANLABS MEDICINA DIAGNOSTICS',missionTitle:'Mission',missionText:'We provide reliable and timely clinical analysis and diagnostic services with high standards of ethics and quality, supporting physicians and companies in seeking early solutions that contribute to patient wellbeing.',visionTitle:'Vision',visionText:'Expand the range of clinical tests, increase patient satisfaction and become a nationally recognized laboratory with a presence in strategic locations.',scopeTitle:'Scope',scopeText:'Pre-analytical, analytical and post-analytical processes in hematology, coagulation, clinical chemistry, hormones, urinalysis and parasitology applied at the Central Laboratory.',qualityTitle:'Quality policy',qualityText:'Quality, warmth, punctuality, confidentiality, trained staff, continuous improvement and clinically useful information to support medical decisions.',labMini:'CLINICAL LABORATORY',heroCardTitle:'Precision in every sample.',heroCardList:'Hematology · Clinical chemistry · Hormones · Urinalysis',quoteTag:'QUOTE',catalogLabel:'TEST CATALOG',catalogTitle:'Browse all available tests',catalogText:'Click the button to open the full catalog, search for a test and select the tests you want to quote.',contactPanelBrand:'LABS · DIAGNOSTIC MEDICINE',contactPanelTitle:'Locations and services',contactPanelText:'View published locations and opening hours.',contactAddress:'Av. Abel Romeo Castillo and Juan Tanca Marengo, Medical Tower 2, 4th floor, offices 417 and 418.',footerExplore:'EXPLORE',footerLabs:'LABS',footerResults:'RESULTS',footerContact:'CONTACT',footerAbout:'About us',footerQuality:'Quality',footerLocations:'Locations',footerServices:'Services',footerAccessResults:'Access my results ↗',navHome:'Home',navServices:'Services',navQuote:'Quote & search tests',navLocations:'Locations',navAbout:'About us',navNotes:'Health notes',navContact:'Contact',results:'Results ↗',heroEyebrow:'CLINICAL DIAGNOSTICS · ECUADOR',heroTitle:'Results that help care for what matters most.',heroLead:'Reliable and timely clinical laboratory services designed to support medical decisions and patient wellbeing.',quoteExam:'Quote tests',findLocation:'Find a location',aboutTitle:'Your trusted laboratory.',servicesTag:'SERVICES',servicesTitle:'Care and diagnostics.',servicesIntro:'Clinical laboratory services focused on reliable and timely care.',service1Title:'Laboratory tests',service1Text:'Clinical analyses in hematology, coagulation, clinical chemistry, hormones, urinalysis and parasitology.',service2Title:'Sample collection',service2Text:'Sample collection and processing through pre-analytical, analytical and post-analytical processes.',service3Title:'Home sample collection',service3Text:'Home service is available in Guayaquil and Durán; for other cities, please check with the branch.',service4Title:'Results',service4Text:'Access your results through the LABS results platform.',service4Link:'Check results ↗',quoteTitle:'Search and quote your tests.',quoteIntro:'One place to search, review and select available tests.',quoteSelected:'Quote and search tests →',locationsTag:'LOCATIONS',locationsTitle:'Find a location.',locationsIntro:'Check addresses and opening hours.',locationsHint:'You can view all locations in the Locations section.',viewLocations:'View locations →',notesTitle:'Health information published by LABS.',notesIntro:'Educational content published by LABS for patients and families.',contactTitle:'We are here to help.',contactTag:'CONTACT',quoteModalTag:'QUOTE',quoteModalTitle:'Select your tests',quoteModalIntro:'Select the tests you want to include and complete your details.',quoteTotalLabel:'Estimated total',namePlaceholder:'Full name',emailPlaceholder:'Email address',phonePlaceholder:'Phone number',prepareRequest:'Prepare request',copyright:'© 2026 HUMANLABS. All rights reserved.',hoursLabel:'Hours',mapLink:'View location on Google Maps →',requestPrepared:'Request prepared for {name}. Tests: {names}. Estimated total: {total}. For actual submission, connect this form to the LABS backend.',selectExam:'Select at least one test before continuing.'}
+es:{
+  skipContent:'Ir al contenido',navHome:'Inicio',navAbout:'Nosotros',navServices:'Servicios',navQuote:'Cotiza y consulta',navLocations:'Sedes',navNotes:'Notas de salud',navContact:'Contacto',
+  heroEyebrow:'DIAGNÓSTICO CLÍNICO · ECUADOR',heroTitle:'Resultados que ayudan a cuidar lo que más importa.',heroLead:'Servicios de laboratorio clínico confiables, oportunos y orientados a apoyar las decisiones médicas y el bienestar de nuestros pacientes.',quoteExam:'Cotizar exámenes',findLocation:'Encontrar una sede',labMini:'LABORATORIO CLÍNICO',heroCardTitle:'Precisión<br>en cada muestra.',heroCardList:'Hematología · Química clínica · Hormonas · Uroanálisis',
+  aboutTag:'HUMANLABS MEDICINA DIAGNÓSTICA',aboutTitle:'Su laboratorio de confianza.',missionTitle:'Misión',missionText:'Otorgamos servicios de análisis y diagnósticos clínicos confiables, oportunos con altos niveles de ética y calidad, apoyando a médicos y empresas para buscar soluciones tempranas que ayuden al bienestar del paciente.',visionTitle:'Visión',visionText:'Ampliar la cartera de exámenes clínicos, aumentar la satisfacción de nuestros pacientes y llegar a ser un laboratorio referente a nivel nacional con presencia en puntos estratégicos del país.',scopeTitle:'Alcance',scopeText:'Procesos preanalíticos, analíticos y postanalíticos en hematología, coagulación, química clínica, hormonas, uroanálisis y parasitología aplicados al Laboratorio Central.',qualityTitle:'Política de calidad',qualityText:'Calidad, calidez, puntualidad, confidencialidad, personal capacitado, mejora continua e información clínicamente útil para la toma de decisiones médicas.',
+  servicesTag:'SERVICIOS',servicesTitle:'Atención y diagnóstico.',servicesIntro:'Servicios de laboratorio clínico orientados a una atención confiable y oportuna.',service1Title:'Exámenes de laboratorio',service1Text:'Análisis clínicos en hematología, coagulación, química clínica, hormonas, uroanálisis y parasitología.',service2Title:'Toma de muestras',service2Text:'Toma y procesamiento de muestras con procesos preanalíticos, analíticos y postanalíticos.',service3Title:'Toma de muestras a domicilio',service3Text:'Servicio a domicilio disponible en Guayaquil y Durán; para otras ciudades, consulta con la sucursal.',service4Title:'Atención al usuario',service4Text:'Encuentra opciones de atención y canales de contacto para resolver tus consultas.',service4Link:'Ver contacto →',
+  quoteTag:'COTIZADOR',quoteTitle:'Consulta y cotiza tus exámenes.',quoteIntro:'Un solo punto para buscar, revisar y seleccionar los exámenes disponibles.',catalogLabel:'CATÁLOGO DE EXÁMENES',catalogTitle:'Consulta todos los exámenes disponibles',catalogText:'Haz clic en el botón para desplegar el catálogo completo, buscar un examen y seleccionar los que deseas cotizar.',quoteSelected:'Cotizar y consultar exámenes →',quoteModalTag:'COTIZACIÓN',quoteModalTitle:'Busca y selecciona tus exámenes',quoteModalIntro:'Busca por nombre, marca los exámenes que necesitas y revisa tu selección antes de solicitar la cotización.',examSearchPlaceholder:'Buscar examen',clearSearch:'Limpiar',selectedTitle:'Tu selección',emptySelection:'Aún no has seleccionado exámenes.',quoteTotalLabel:'Total estimado',prepareRequest:'Solicitar cotización por correo →',namePlaceholder:'Nombre completo',emailPlaceholder:'Correo electrónico',phonePlaceholder:'Teléfono',
+  notesTitle:'Información de salud publicada por LABS.',notesIntro:'Contenido educativo publicado por LABS para pacientes y familias.',locationsTag:'SEDES',locationsTitle:'Encuentra una sede.',locationsIntro:'Selecciona una sede para consultar únicamente su dirección y horario.',contactTag:'CONTACTO',contactTitle:'Estamos para ayudarte.',contactAddress:'Av. Abel Romeo Castillo y Juan Tanca Marengo, Torre Médica 2, piso 4, consultorios 417 y 418.',whatsappLink:'Escribir por WhatsApp →',contactPanelBrand:'LABS · MEDICINA DIAGNÓSTICA',contactPanelTitle:'Atención al usuario',contactPanelText:'Para consultas generales, utiliza los canales oficiales de LABS.',locationsHint:'También puedes consultar la sede que necesitas en la sección Sedes.',viewLocations:'Ver sedes →',footerExplore:'EXPLORA',footerLabs:'LABS',footerAbout:'Quiénes somos',footerQuality:'Calidad',footerLocations:'Sedes',footerServices:'Servicios',footerContact:'CONTACTO',workWithUs:'Trabaja con nosotros',copyright:'© 2026 HUMANLABS. Todos los derechos reservados.'
+},
+en:{
+  skipContent:'Skip to content',navHome:'Home',navAbout:'About us',navServices:'Services',navQuote:'Quote tests',navLocations:'Locations',navNotes:'Health notes',navContact:'Contact',
+  heroEyebrow:'CLINICAL DIAGNOSTICS · ECUADOR',heroTitle:'Results that help care for what matters most.',heroLead:'Reliable and timely clinical laboratory services designed to support medical decisions and patient wellbeing.',quoteExam:'Quote tests',findLocation:'Find a location',labMini:'CLINICAL LABORATORY',heroCardTitle:'Precision<br>in every sample.',heroCardList:'Hematology · Clinical chemistry · Hormones · Urinalysis',
+  aboutTag:'HUMANLABS DIAGNOSTIC MEDICINE',aboutTitle:'Your trusted laboratory.',missionTitle:'Mission',missionText:'We provide reliable and timely clinical analysis and diagnostic services with high standards of ethics and quality, supporting physicians and companies in seeking early solutions that contribute to patient wellbeing.',visionTitle:'Vision',visionText:'Expand the clinical test portfolio, increase patient satisfaction and become a nationally recognized laboratory with a presence in strategic locations.',scopeTitle:'Scope',scopeText:'Pre-analytical, analytical and post-analytical processes in hematology, coagulation, clinical chemistry, hormones, urinalysis and parasitology applied to the Central Laboratory.',qualityTitle:'Quality policy',qualityText:'Quality, warmth, punctuality, confidentiality, trained staff, continuous improvement and clinically useful information for medical decision-making.',
+  servicesTag:'SERVICES',servicesTitle:'Care and diagnostics.',servicesIntro:'Clinical laboratory services focused on reliable and timely care.',service1Title:'Laboratory tests',service1Text:'Clinical analysis in hematology, coagulation, clinical chemistry, hormones, urinalysis and parasitology.',service2Title:'Sample collection',service2Text:'Sample collection and processing through pre-analytical, analytical and post-analytical processes.',service3Title:'Home sample collection',service3Text:'Home service available in Guayaquil and Durán; for other cities, check with the branch.',service4Title:'Patient support',service4Text:'Find patient support options and official contact channels for your questions.',service4Link:'View contact →',
+  quoteTag:'QUOTE',quoteTitle:'Search and quote your tests.',quoteIntro:'One place to search, review and select available tests.',catalogLabel:'TEST CATALOG',catalogTitle:'Browse available tests',catalogText:'Click the button to open the full catalog, search for a test and select the ones you want to quote.',quoteSelected:'Quote and search tests →',quoteModalTag:'QUOTE',quoteModalTitle:'Search and select your tests',quoteModalIntro:'Search by name, select the tests you need and review your selection before requesting a quote.',examSearchPlaceholder:'Search test',clearSearch:'Clear',selectedTitle:'Your selection',emptySelection:'No tests selected yet.',quoteTotalLabel:'Estimated total',prepareRequest:'Request quote by email →',namePlaceholder:'Full name',emailPlaceholder:'Email address',phonePlaceholder:'Phone',
+  notesTitle:'Health information published by LABS.',notesIntro:'Educational content published by LABS for patients and families.',locationsTag:'LOCATIONS',locationsTitle:'Find a location.',locationsIntro:'Select a location to view only its address and hours.',contactTag:'CONTACT',contactTitle:'We are here to help.',contactAddress:'Av. Abel Romeo Castillo y Juan Tanca Marengo, Torre Médica 2, 4th floor, offices 417 and 418.',whatsappLink:'Write on WhatsApp →',contactPanelBrand:'LABS · DIAGNOSTIC MEDICINE',contactPanelTitle:'Patient support',contactPanelText:'For general questions, use LABS official channels.',locationsHint:'You can also select the location you need in the Locations section.',viewLocations:'View locations →',footerExplore:'EXPLORE',footerLabs:'LABS',footerAbout:'About us',footerQuality:'Quality',footerLocations:'Locations',footerServices:'Services',footerContact:'CONTACT',workWithUs:'Work with us',copyright:'© 2026 HUMANLABS. All rights reserved.'
+}
 };
-function setLanguage(lang){currentLang=lang;document.documentElement.lang=lang;const t=translations[lang];document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k])el.textContent=t[k]});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const k=el.dataset.i18nPlaceholder;if(t[k])el.placeholder=t[k]});document.querySelectorAll('#languageToggle,#footerLanguage').forEach(b=>b.textContent=lang==='es'?'ES | EN':'EN | ES');document.querySelectorAll('.i18n-hours').forEach(el=>el.textContent=t.hoursLabel);document.querySelectorAll('.mapLink').forEach(el=>el.textContent=t.mapLink);localStorage.setItem('labs-language',lang);if(typeof renderNotes==='function')renderNotes();if(typeof renderQuote==='function'&&modal?.classList.contains('show'))renderQuote();if(typeof showLocation==='function'){const active=tabs?.querySelector('.active')?.dataset.key||'guayaquil';showLocation(active)}}
+function setLanguage(lang){
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.dataset.i18n;
+    if(translations[lang][k])el.innerHTML=translations[lang][k];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    const k=el.dataset.i18nPlaceholder;
+    if(translations[lang][k])el.placeholder=translations[lang][k];
+  });
+  document.querySelectorAll('#languageToggle,#footerLanguage').forEach(b=>b.textContent=lang==='es'?'ES | EN':'EN | ES');
+  localStorage.setItem('labs-language',lang);
+  renderNotes();
+  if(modal?.classList.contains('show'))renderQuote();
+  const active=tabs?.querySelector('button.active');
+  showLocation(active?.dataset.key||'guayaquil');
+}
 let currentLang=localStorage.getItem('labs-language')||'es';
 document.querySelector('#languageToggle')?.addEventListener('click',()=>setLanguage(currentLang==='es'?'en':'es'));
 document.querySelector('#footerLanguage')?.addEventListener('click',()=>setLanguage(currentLang==='es'?'en':'es'));
+renderNotes();
 setLanguage(currentLang);
+showLocation('guayaquil');
