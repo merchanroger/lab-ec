@@ -1,152 +1,204 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LABS — Laboratorio clínico. Atención profesional, resultados y orientación para el cuidado de tu salud.">
-  <title>LABS — Laboratorio clínico</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LABS Humanlabs Medicina Diagnóstica — laboratorio clínico y medicina diagnóstica.">
+  <title>LABS | Humanlabs Medicina Diagnóstica</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span>Atención personalizada</span>
-      <div class="top-contact">
+  <div class="topline">
+    <div class="container top-inner">
+      <span>Laboratorio clínico y medicina diagnóstica</span>
+      <div class="top-links">
         <a href="tel:+593985090215">(+593) 98 509 0215</a>
         <a href="mailto:info@labs.ec">info@labs.ec</a>
       </div>
     </div>
   </div>
 
-  <header class="site-header" id="inicio">
+  <header class="header" id="inicio">
     <div class="container nav-wrap">
       <a class="brand" href="#inicio" aria-label="LABS inicio">
         <span class="brand-mark"><span></span><span></span><span></span></span>
-        <span class="brand-text">LABS</span>
+        <span><strong>LABS</strong><small>HUMANLABS MEDICINA DIAGNÓSTICA</small></span>
       </a>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
-        <i></i><i></i><i></i>
-      </button>
-
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
       <nav class="nav" id="mainNav">
-        <a class="active" href="#inicio">Inicio</a>
-        <a href="#nosotros">Nosotros</a>
+        <a href="#inicio">Inicio</a>
         <a href="#servicios">Servicios</a>
-        <a href="#notas">Notas de salud</a>
-        <a href="#contacto">Contactos</a>
-        <a class="nav-login" href="https://app.labs.ec/" target="_blank" rel="noopener">Resultados / Login <span>↗</span></a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#salud">Salud</a>
+        <a href="#sedes">Sedes</a>
+        <a href="#contacto">Contacto</a>
+        <a class="nav-result" href="https://app.labs.ec/" target="_blank" rel="noopener">Ver resultados <span>↗</span></a>
       </nav>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="hero-orb orb-one"></div>
-      <div class="hero-orb orb-two"></div>
-      <div class="container hero-grid">
+      <div class="hero-grid container">
         <div class="hero-copy">
-          <div class="eyebrow"><span class="pulse"></span> Laboratorio clínico</div>
-          <h1>La información de tu salud, <em>con claridad.</em></h1>
-          <p class="hero-text">Resultados confiables, atención cercana y una experiencia pensada para acompañarte en cada etapa de tu cuidado.</p>
+          <div class="eyebrow"><span class="pulse"></span> Medicina diagnóstica</div>
+          <h1>Información clínica para <em>decisiones que importan.</em></h1>
+          <p class="hero-text">LABS es un laboratorio clínico y de medicina diagnóstica comprometido con procesos de calidad, confidencialidad y resultados confiables.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contacto">Contáctanos <span>→</span></a>
-            <a class="btn btn-ghost" href="https://app.labs.ec/" target="_blank" rel="noopener">Consultar resultados <span>↗</span></a>
+            <a class="btn btn-primary" href="https://labs.ec/cotizador_nuevo.php" target="_blank" rel="noopener">Cotizar exámenes <span>→</span></a>
+            <a class="btn btn-soft" href="https://app.labs.ec/" target="_blank" rel="noopener">Consultar resultados</a>
           </div>
-          <div class="trust-row">
-            <div class="trust-item"><strong>+</strong><span>Atención profesional</span></div>
-            <div class="trust-line"></div>
-            <div class="trust-item"><strong>01</strong><span>Experiencia centrada en ti</span></div>
+          <div class="hero-note">
+            <span class="check">✓</span>
+            <div><strong>Atención presencial y toma de muestras</strong><small>Consulta disponibilidad y condiciones de cada servicio.</small></div>
           </div>
         </div>
 
-        <div class="hero-visual" aria-label="Ilustración de laboratorio">
-          <div class="visual-card back-card"></div>
-          <div class="visual-card main-card">
-            <div class="card-head"><span>LABS</span><span class="status-dot">●</span></div>
-            <div class="lab-illustration">
-              <div class="tube tube-a"><span></span></div>
-              <div class="tube tube-b"><span></span></div>
-              <div class="tube tube-c"><span></span></div>
-              <div class="flask"><div class="liquid"></div></div>
-              <div class="spark s1">+</div><div class="spark s2">+</div><div class="spark s3">•</div>
+        <div class="hero-visual" aria-label="Panel visual médico">
+          <div class="orb orb-a"></div><div class="orb orb-b"></div>
+          <div class="lab-card main-card">
+            <div class="card-top"><span class="status"><i></i> Procesos de calidad</span><span class="cross">＋</span></div>
+            <div class="sample">
+              <div class="tube tube-1"></div><div class="tube tube-2"></div><div class="tube tube-3"></div>
             </div>
-            <div class="result-strip">
-              <div><small>Resultados</small><strong>Disponibles</strong></div>
-              <span class="check">✓</span>
-            </div>
+            <div class="wave"></div>
+            <div class="metric"><span>LABS</span><strong>Medicina<br>diagnóstica</strong><small>Calidad · Confianza · Confidencialidad</small></div>
           </div>
-          <div class="floating-note"><span class="mini-icon">✦</span><div><b>Precisión</b><small>En cada proceso</small></div></div>
+          <div class="floating-card fc-one"><span class="mini-icon">⌁</span><div><b>Resultados</b><small>Consulta en línea</small></div></div>
+          <div class="floating-card fc-two"><span class="mini-icon">＋</span><div><b>Atención</b><small>Sedes y horarios</small></div></div>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <div class="container quick-grid">
+          <a href="https://labs.ec/cotizador_nuevo.php" target="_blank" rel="noopener"><span>01</span><div><b>Cotiza tus exámenes</b><small>Consulta pruebas y valores</small></div><i>↗</i></a>
+          <a href="https://app.labs.ec/" target="_blank" rel="noopener"><span>02</span><div><b>Ver mis resultados</b><small>Acceso a la plataforma</small></div><i>↗</i></a>
+          <a href="#sedes"><span>03</span><div><b>Encuentra una sede</b><small>Guayaquil y otras ciudades</small></div><i>↓</i></a>
+          <a href="#contacto"><span>04</span><div><b>Habla con LABS</b><small>Información y atención</small></div><i>↓</i></a>
         </div>
       </div>
     </section>
 
-    <section class="quick-links">
-      <div class="container quick-grid">
-        <a href="#servicios" class="quick-card"><span class="q-icon">⌁</span><div><small>Explora</small><strong>Nuestros servicios</strong></div><b>→</b></a>
-        <a href="#notas" class="quick-card"><span class="q-icon">✦</span><div><small>Infórmate</small><strong>Notas de salud</strong></div><b>→</b></a>
-        <a href="#contacto" class="quick-card"><span class="q-icon">⌖</span><div><small>Encuéntranos</small><strong>Cómo llegar</strong></div><b>→</b></a>
-      </div>
-    </section>
-
-    <section class="section about" id="nosotros">
+    <section class="section intro" id="nosotros">
       <div class="container two-col">
-        <div class="section-label">01 / NOSOTROS</div>
         <div>
-          <h2>Tu salud merece información <span>que puedas entender.</span></h2>
-          <p class="lead">En LABS combinamos atención humana, procesos cuidadosos y una experiencia digital sencilla para que el acceso a tus resultados sea más claro.</p>
-          <div class="stats">
-            <div><strong>LABS</strong><span>Laboratorio clínico</span></div>
-            <div><strong>+</strong><span>Atención personalizada</span></div>
-            <div><strong>24/7</strong><span>Acceso digital a resultados*</span></div>
-          </div>
-          <small class="disclaimer">*Disponibilidad sujeta al procesamiento y publicación de cada examen.</small>
+          <p class="kicker">LABORATORIO HUMANLABS MEDICINA DIAGNÓSTICA</p>
+          <h2>Tu laboratorio de confianza, con una experiencia más clara.</h2>
+        </div>
+        <div>
+          <p>LABS brinda servicios de exámenes de laboratorio y medicina diagnóstica. Su información institucional destaca procesos preanalíticos, analíticos y postanalíticos, junto con calidad, calidez, puntualidad y confidencialidad.</p>
+          <a class="text-link" href="https://labs.ec/nosotros/" target="_blank" rel="noopener">Conoce más sobre nosotros <span>→</span></a>
         </div>
       </div>
     </section>
 
     <section class="section services" id="servicios">
       <div class="container">
-        <div class="section-heading">
-          <div class="section-label">02 / SERVICIOS</div>
-          <div><h2>Todo empieza con <span>datos confiables.</span></h2><p>Una interfaz más simple para encontrar lo que necesitas.</p></div>
+        <div class="section-head">
+          <div><p class="kicker">SERVICIOS</p><h2>Todo lo que necesitas, organizado de forma sencilla.</h2></div>
+          <a class="outline-link" href="https://labs.ec/servicios.html" target="_blank" rel="noopener">Ver catálogo de exámenes ↗</a>
         </div>
+
         <div class="service-grid">
           <article class="service-card featured">
-            <div class="service-number">01</div><div class="service-icon">◌</div>
+            <div class="service-icon blood">◉</div>
+            <span class="service-num">01</span>
             <h3>Exámenes de laboratorio</h3>
-            <p>Apoyo para el seguimiento y evaluación de tu estado de salud mediante estudios de laboratorio.</p>
-            <a href="#contacto">Solicitar información <span>→</span></a>
+            <p>Consulta una amplia cartera de pruebas de laboratorio y toma de muestras.</p>
+            <a href="https://labs.ec/servicios.html" target="_blank" rel="noopener">Explorar exámenes <span>→</span></a>
           </article>
           <article class="service-card">
-            <div class="service-number">02</div><div class="service-icon">⌁</div>
-            <h3>Consulta de resultados</h3>
-            <p>Accede al portal de resultados desde cualquier dispositivo de manera rápida y sencilla.</p>
-            <a href="https://app.labs.ec/" target="_blank" rel="noopener">Ir al portal <span>↗</span></a>
+            <div class="service-icon">⌁</div>
+            <span class="service-num">02</span>
+            <h3>Cotizador online</h3>
+            <p>Busca exámenes, revisa valores y continúa con el proceso disponible en línea.</p>
+            <a href="https://labs.ec/cotizador_nuevo.php" target="_blank" rel="noopener">Abrir cotizador <span>→</span></a>
           </article>
           <article class="service-card">
-            <div class="service-number">03</div><div class="service-icon">✦</div>
-            <h3>Atención profesional</h3>
-            <p>Un equipo dispuesto a orientarte con información clara durante tu experiencia.</p>
-            <a href="#contacto">Contáctanos <span>→</span></a>
+            <div class="service-icon">✓</div>
+            <span class="service-num">03</span>
+            <h3>Resultados</h3>
+            <p>Accede a la plataforma destinada a la consulta de tus resultados.</p>
+            <a href="https://app.labs.ec/" target="_blank" rel="noopener">Ingresar a resultados <span>→</span></a>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">⌂</div>
+            <span class="service-num">04</span>
+            <h3>Toma de muestras</h3>
+            <p>Consulta las opciones de atención presencial o toma de muestras disponibles.</p>
+            <a href="#sedes">Ver sedes <span>→</span></a>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section notes" id="notas">
-      <div class="container">
-        <div class="section-heading compact">
-          <div class="section-label">03 / NOTAS DE SALUD</div>
-          <div><h2>Información para <span>cuidarte mejor.</span></h2></div>
+    <section class="quality">
+      <div class="container quality-grid">
+        <div class="quality-art">
+          <div class="dna-line"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="quality-panel">
+            <span class="tiny-label">HUMANLABS</span>
+            <strong>Calidad en cada etapa</strong>
+            <small>Preanalítica · Analítica · Postanalítica</small>
+          </div>
         </div>
-        <div class="notes-grid">
-          <article class="note-card large"><div class="note-image abstract-a"><span>01</span></div><div class="note-body"><small>Salud & bienestar</small><h3>Conocer tus resultados también es parte de cuidarte.</h3><p>Comprender la información de tus exámenes puede ayudarte a conversar mejor con tu profesional de salud.</p><a href="#contacto">Leer más →</a></div></article>
-          <article class="note-card"><div class="note-image abstract-b"><span>02</span></div><div class="note-body"><small>Prevención</small><h3>La prevención empieza con información.</h3><a href="#contacto">Leer más →</a></div></article>
-          <article class="note-card"><div class="note-image abstract-c"><span>03</span></div><div class="note-body"><small>Hábitos</small><h3>Pequeñas decisiones, grandes cambios.</h3><a href="#contacto">Leer más →</a></div></article>
+        <div class="quality-copy">
+          <p class="kicker">CALIDAD Y TECNOLOGÍA</p>
+          <h2>Procesos pensados para cuidar cada detalle.</h2>
+          <p>La información oficial de LABS describe protocolos y procesos desde la toma de muestra hasta la emisión de resultados, además de tecnología computarizada, código de barras, tubos primarios y controles constantes.</p>
+          <div class="quality-list">
+            <div><span>01</span><b>Confiabilidad</b><small>Procesos y protocolos orientados a la calidad.</small></div>
+            <div><span>02</span><b>Confidencialidad</b><small>Compromiso con la información clínicamente útil.</small></div>
+            <div><span>03</span><b>Tecnología</b><small>Equipamiento y procesos tecnológicos para el laboratorio.</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section health" id="salud">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="kicker">NOTAS DE SALUD</p><h2>Información para entender mejor tu salud.</h2></div>
+          <a class="outline-link" href="https://labs.ec/" target="_blank" rel="noopener">Ver publicaciones ↗</a>
+        </div>
+        <div class="article-grid">
+          <article class="article">
+            <div class="article-tag">Salud</div><span class="article-date">07 NOV · 2024</span>
+            <h3>El estrés: un enemigo silencioso que afecta nuestra salud física y mental</h3>
+            <p>Una de las publicaciones disponibles en LABS dentro de sus notas de salud.</p>
+            <a href="https://labs.ec/" target="_blank" rel="noopener">Leer en LABS →</a>
+          </article>
+          <article class="article">
+            <div class="article-tag">Exámenes</div><span class="article-date">22 DIC · 2023</span>
+            <h3>¿Qué se puede ver en un hemograma?</h3>
+            <p>Contenido de LABS orientado a explicar información relacionada con exámenes.</p>
+            <a href="https://labs.ec/" target="_blank" rel="noopener">Leer en LABS →</a>
+          </article>
+          <article class="article dark">
+            <div class="article-tag">Salud</div><span class="article-date">01 SEP · 2023</span>
+            <h3>Exámenes para detectar hígado graso</h3>
+            <p>Consulta el contenido publicado por LABS para conocer el tema.</p>
+            <a href="https://labs.ec/" target="_blank" rel="noopener">Leer en LABS →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section locations" id="sedes">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="kicker">ENCUÉNTRANOS</p><h2>LABS siempre cerca de ti.</h2></div>
+          <p class="section-side">Consulta la sede, dirección y horario que necesitas antes de acudir.</p>
+        </div>
+        <div class="locations-grid">
+          <article class="location-card main"><span class="pin">⌖</span><div class="city">Guayaquil <b>Sede principal</b></div><p>Av. Abel Romeo Castillo y Juan Tanca Marengo, Torre Médica 2, piso 4, consultorios 417 y 418.</p><small>LUN–VIE 06h30–18h00 · SAB 06h30–12h00</small></article>
+          <article class="location-card"><span class="pin">⌖</span><div class="city">Quito</div><p>Av. Mariana de Jesús OE7-02 y Nuño de Valderrama. Edificio CITIMED, Planta Baja Local 7.</p><small>LUN–VIE 07h00–16h00</small></article>
+          <article class="location-card"><span class="pin">⌖</span><div class="city">Manta</div><p>Edificio Umiñamed, planta baja (misma sede de EndoscopyNet Manta).</p><small>LUN–VIE 07h00–15h40</small></article>
+          <article class="location-card"><span class="pin">⌖</span><div class="city">Santo Domingo</div><p>Av. Quito, entre Latacunga e Ibarra.</p><small>LUN–VIE 07h30–16h10</small></article>
+          <article class="location-card"><span class="pin">⌖</span><div class="city">Milagro</div><p>Calle 17 de Septiembre, entre Calle Esmeraldas y Guayas, frente a CNEL.</p><small>LUN–VIE 08h00–16h00</small></article>
         </div>
       </div>
     </section>
@@ -154,40 +206,33 @@
     <section class="contact-section" id="contacto">
       <div class="container contact-grid">
         <div>
-          <div class="section-label light">04 / CONTACTO</div>
-          <h2>Estamos aquí para<br><em>ayudarte.</em></h2>
-          <p>Encuéntranos en nuestra sede o escríbenos para recibir información.</p>
-          <div class="contact-list">
-            <a href="tel:+593985090215"><span>☎</span><div><small>Teléfono</small><strong>(+593) 98 509 0215</strong></div></a>
-            <a href="mailto:info@labs.ec"><span>✉</span><div><small>Email</small><strong>info@labs.ec</strong></div></a>
-            <div><span>⌖</span><div><small>Dirección</small><strong>Av. Abel Romeo Castillo y Juan Tanca Marengo<br>Torre Médica 2, piso 4, consultorios 417 y 418</strong></div></div>
+          <p class="kicker light">CONTACTO</p>
+          <h2>¿Necesitas información?</h2>
+          <p>Comunícate con LABS para conocer disponibilidad, sedes y servicios.</p>
+          <div class="contact-actions">
+            <a href="tel:+593985090215"><span>☎</span> (+593) 98 509 0215</a>
+            <a href="mailto:info@labs.ec"><span>✉</span> info@labs.ec</a>
           </div>
         </div>
-        <div class="contact-panel">
-          <div class="panel-top"><span>LABS</span><span>CONTACTO</span></div>
-          <h3>¿Tienes alguna pregunta?</h3>
-          <p>Déjanos tus datos y te contactaremos.</p>
-          <form id="contactForm">
-            <label>Nombre<input required type="text" name="name" placeholder="Tu nombre"></label>
-            <label>Correo<input required type="email" name="email" placeholder="tu@correo.com"></label>
-            <label>Mensaje<textarea required name="message" rows="3" placeholder="¿En qué podemos ayudarte?"></textarea></label>
-            <button class="btn btn-primary full" type="submit">Enviar mensaje <span>→</span></button>
-            <div class="form-success" id="formSuccess">Mensaje preparado. En una implementación real, aquí se conectaría el formulario al servicio correspondiente.</div>
-          </form>
+        <div class="contact-box">
+          <span class="box-label">SEDE PRINCIPAL</span>
+          <h3>Guayaquil</h3>
+          <p>Av. Abel Romeo Castillo y Juan Tanca Marengo<br>Torre Médica 2 · Piso 4 · Consultorios 417 y 418</p>
+          <a href="#sedes">Ver todas las sedes →</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-main">
-      <a class="brand footer-brand" href="#inicio"><span class="brand-mark"><span></span><span></span><span></span></span><span class="brand-text">LABS</span></a>
-      <p>Laboratorio clínico · Guayaquil, Ecuador</p>
-      <a href="https://app.labs.ec/" target="_blank" rel="noopener">Portal de resultados ↗</a>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="brand footer-brand"><span class="brand-mark"><span></span><span></span><span></span></span><span><strong>LABS</strong><small>HUMANLABS MEDICINA DIAGNÓSTICA</small></span></div>
+      <p>© 2026 HUMANLABS. Todos los Derechos Reservados.</p>
+      <div><a href="https://labs.ec/seleccion/" target="_blank" rel="noopener">Trabaja con nosotros</a><a href="https://labs.ec/preguntas-frecuentes/" target="_blank" rel="noopener">Preguntas frecuentes</a></div>
     </div>
-    <div class="container footer-bottom"><span>© 2026 HUMANLABS. Todos los Derechos Reservados.</span><a href="mailto:info@labs.ec">info@labs.ec</a></div>
   </footer>
 
+  <a class="floating-whatsapp" href="https://wa.me/593985090215" target="_blank" rel="noopener" aria-label="WhatsApp">◔</a>
   <script src="script.js"></script>
 </body>
 </html>
