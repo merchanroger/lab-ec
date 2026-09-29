@@ -1,21 +1,16 @@
 # LABS — Medicina Diagnóstica
 
-Rediseño integral estático inspirado en la arquitectura, claridad y experiencia de usuario de grandes laboratorios internacionales como SYNLAB, usando el contenido público de HUMANLABS/LABS.
+Versión actualizada de la web LABS con el diseño existente conservado y ajustes de estructura, navegación y contenido.
 
-## Incluye
-- Nueva portada editorial/clinical.
-- Navegación centrada en pacientes.
-- Acciones rápidas: exámenes, cotizador, resultados y sedes.
-- Catálogo de exámenes con buscador.
-- Cotizador frontend.
-- Sedes y horarios.
-- Servicios, calidad, nosotros y preguntas frecuentes.
-- Notas de salud y contacto.
+Cambios:
+- Menú principal simplificado: Inicio, Nosotros, Notas de salud, Contacto y Resultados.
+- Eliminados Encuentra tus exámenes y Preguntas frecuentes.
+- Un único punto de consulta/cotización de exámenes: Cotizador.
+- Notas de salud integradas con contenido publicado por LABS.
+- Contacto y sedes integrados en una sola sección.
+- Trabaja con nosotros tratado como enlace secundario en el footer.
+- Selector ES | EN preparado para la interfaz.
+- Portal real de resultados enlazado a https://app.labs.ec/
 - Responsive para escritorio, tablet y celular.
-- Portal de resultados enlazado a `https://app.labs.ec/`.
 
-## Publicación en GitHub Pages
-Sube `index.html`, `styles.css` y `script.js` al repositorio y activa GitHub Pages desde Settings → Pages → Deploy from branch.
-
-## Nota
-Los formularios son frontend. Para recibir solicitudes realmente en LABS se debe conectar el formulario con el backend/API oficial. No se inventaron endpoints.
+Nota: el formulario de cotización sigue siendo frontend; para enviar solicitudes realmente a LABS debe conectarse al backend/API correspondiente.
