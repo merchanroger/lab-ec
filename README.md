@@ -1,47 +1,66 @@
-# LABS — versión final de estructura, navegación y funcionalidad
+# LABS — Ajustes finales de diseño, contenido y funcionalidad
 
-## Cambios realizados
-- Se conserva la identidad visual existente: verde principal, naranja como acento, tipografías, tarjetas, botones, espaciados e imágenes.
-- Orden de página: Inicio → Nosotros → Servicios → Cotiza y consulta → Notas de salud → Sedes → Contacto → Footer.
-- Menú principal sincronizado exactamente con esas secciones.
-- Se eliminó el elemento independiente “Resultados” del menú, servicios y footer.
-- No se dejaron enlaces internos hacia la web anterior de LABS.
-- Se mantuvo la navegación externa/operativa únicamente cuando corresponde a un canal real, como correo, teléfono, WhatsApp o Google Maps.
+Esta versión mantiene la línea visual aprobada y aplica los cambios solicitados.
+
+## Estructura
+1. Inicio
+2. Nosotros
+3. Cotiza tus exámenes
+4. Notas de salud
+5. Sedes
+6. Contacto
+
+Se eliminó por completo la sección independiente **Servicios** y no existe un apartado independiente de **Resultados**.
+
+## Hero
+- Carrusel de fotografías de laboratorio de la web oficial de LABS.
+- Avance automático y navegación manual.
+- Adaptación móvil.
+- Fallback visual si una fotografía remota no está disponible.
+
+## Nosotros
+- Imagen del laboratorio a la izquierda en escritorio y arriba en móvil.
+- Misión, visión, alcance y política de calidad basados en la información institucional publicada por LABS.
+- Información adicional contenida en elementos desplegables para mantener la página limpia.
 
 ## Cotizador
-- El catálogo permanece cerrado en la página principal.
-- El botón “Cotizar y consultar exámenes” abre el cotizador.
-- Incluye búsqueda de exámenes.
-- Permite seleccionar y deseleccionar exámenes.
-- Muestra la selección actual.
-- Permite quitar exámenes desde el resumen.
-- Calcula el total estimado.
-- Valida que exista al menos un examen.
-- El formulario prepara una solicitud real mediante `mailto:info@labs.ec`, evitando un botón ficticio sin acción.
-- El modal puede cerrarse con X, clic fuera o Escape.
+- Catálogo cerrado inicialmente.
+- Búsqueda de exámenes.
+- Selección y eliminación de exámenes.
+- Resumen de selección.
+- Total estimado calculado con los valores disponibles en el catálogo incluido.
+- Datos del solicitante.
+- Generación de PDF descargable mediante jsPDF.
+- Código de cotización generado automáticamente.
+- El PDF indica expresamente que es una solicitud de cotización y no una factura fiscal.
+- Envío por correo a info@labs.ec mediante el cliente de correo del usuario.
+
+## PDF
+El PDF contiene solicitante, identificación si fue proporcionada, correo, teléfono, fecha, código de cotización, exámenes, cantidad, precio, subtotal y total estimado. No se inventan códigos de examen; cuando no existe un código disponible en los datos incluidos, no se muestra uno ficticio.
 
 ## Sedes
 - Selector compacto.
 - Solo se muestra la sede seleccionada.
-- Dirección, horario y enlace de ubicación se actualizan al cambiar de sede.
-- Adaptación específica para móvil.
+- Dirección y horario oficiales disponibles.
+- Enlace a Google Maps.
+- Guayaquil identificada como sede principal.
 
 ## Notas de salud
-- Se muestran mediante tarjetas resumidas.
-- La lectura completa disponible dentro del proyecto se abre en un modal para no saturar la página.
-- Se conservaron las notas existentes del proyecto sin crear artículos nuevos.
+- Se mantienen como tarjetas compactas.
+- El título principal es: “Contenido educativo publicado por LABS para pacientes y familias”.
+- Cada nota abre su contenido completo en un modal.
+- Se incluyen traducciones de la interfaz y títulos/resúmenes de las notas disponibles en el proyecto.
+
+## Idiomas
+La interfaz ES/EN actualiza menú, botones, formularios, cotizador, sedes, notas, mensajes, footer y título del documento.
 
 ## Responsive
-- Menú hamburguesa funcional.
-- Cierre automático al seleccionar una sección.
-- Cierre con Escape.
-- Cotizador usable en móvil.
-- Sedes compactas en móvil.
-- Sin duplicación de secciones ni IDs.
+Se ajustaron hero/carrusel, Nosotros, sedes, cotizador, formularios, botones y modales para teléfono, tablet y escritorio.
 
-## Validaciones realizadas
-- `node --check script.js` sin errores de sintaxis.
-- Anchors internos verificados contra IDs existentes.
-- IDs duplicados revisados.
-- Claves `data-i18n` comparadas con el objeto de traducciones.
-- Secciones verificadas en el orden solicitado.
+## Fuentes oficiales consultadas
+- https://labs.ec/
+- https://labs.ec/nosotros/
+- https://labs.ec/contactos/
+- https://labs.ec/cotizador_nuevo.php
+
+Las fotografías del carrusel y la imagen institucional utilizan referencias remotas de la web oficial de LABS para conservar el material publicado por la institución.
