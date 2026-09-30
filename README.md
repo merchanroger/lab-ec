@@ -64,3 +64,11 @@ Se ajustaron hero/carrusel, Nosotros, sedes, cotizador, formularios, botones y m
 - https://labs.ec/cotizador_nuevo.php
 
 Las fotografías del carrusel y la imagen institucional utilizan referencias remotas de la web oficial de LABS para conservar el material publicado por la institución.
+
+
+## Correcciones adicionales
+- Header y footer usan como referencia el logo oficial de LABS: https://labs.ec/wp-content/uploads/2020/10/logo.jpg
+- El título de Notas de salud es: “Contenido educativo de LABS para pacientes y familias”.
+- Se eliminó el subtítulo secundario del lado derecho de Notas de salud.
+- Se reforzaron sutilmente los acentos naranja sin desplazar al verde como color principal.
+- El PDF intenta cargar el mismo logo oficial antes de generarse.
