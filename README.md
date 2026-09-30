@@ -72,3 +72,12 @@ Las fotografías del carrusel y la imagen institucional utilizan referencias rem
 - Se eliminó el subtítulo secundario del lado derecho de Notas de salud.
 - Se reforzaron sutilmente los acentos naranja sin desplazar al verde como color principal.
 - El PDF intenta cargar el mismo logo oficial antes de generarse.
+
+
+## Ajustes finales — 30 Sep 2026
+- Módulo Sedes con apertura a pantalla completa y cierre claro, incluyendo móvil.
+- Verde de marca alineado con el tono turquesa/verde del logo oficial LABS (#00A99D como referencia de interfaz); naranja conservado como acento.
+- Carrusel de Inicio conserva las imágenes existentes y agrega las dos fotografías entregadas por el usuario en `assets/`.
+- PDF usa la URL oficial del logo LABS como fuente de imagen y mantiene fallback de compatibilidad si el navegador no permite la carga remota.
+- Cotizador reorganizado visualmente por pasos y catálogo de 6 columnas en escritorio, con adaptación responsive.
+- Footer reducido a logo, Explora, LABS y Contacto.
