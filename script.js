@@ -35,9 +35,9 @@ document.querySelectorAll('#mainNav a[href^="#"]').forEach(a=>a.addEventListener
 
 // Carrusel del hero: fotografías de LABS publicadas en su web oficial.
 const heroImages=[
-  {src:'https://labs.ec/wp-content/uploads/2021/01/laboratorio-labs-guayaquil.jpg',alt:'Laboratorio LABS Guayaquil'},
-  {src:'https://labs.ec/wp-content/uploads/2021/01/Laboratorista-en-microscopio-laboratorio-LABS.jpg',alt:'Laboratorista LABS'},
-  {src:'https://labs.ec/wp-content/uploads/2021/01/slider2.jpg',alt:'Toma de muestras LABS'}
+  {src:'https://share.google/U5P04lzh0igB0hhYK',alt:'Imagen LABS'},
+  {src:'https://share.google/KDj1u0d4d4NP63mCD',alt:'Imagen LABS'},
+  {src:'https://share.google/3zg8QPFZe7W4qbh6G',alt:'Imagen LABS'}
 ];
 const heroTrack=document.querySelector('#heroCarouselTrack'),heroDots=document.querySelector('#carouselDots');
 let carouselIndex=0,carouselTimer;
