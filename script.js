@@ -59,7 +59,7 @@ renderCarousel();restartCarousel();
 const tabs=document.querySelector('#locationTabs'),detail=document.querySelector('#locationDetail');
 const locationKeys=Object.keys(locations);
 const locationEnglish={guayaquil:'Main location',quito:'Location',manta:'Location','santo-domingo':'Location',milagro:'Location'};
-function showLocation(key){const x=locations[key];if(!x||!tabs||!detail)return;tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.key===key));detail.innerHTML=`<h3>${x.city}</h3>${x.label?`<p class="locationLabel">${currentLang==='en'?'Main location':'Sede principal'}</p>`:''}<p>${x.address}</p><div class="hours"><b>${currentLang==='en'?'Hours':'Horario'}</b><br>${x.hours}</div><p><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.address)}" target="_blank" rel="noopener">${currentLang==='en'?'Get directions in Google Maps →':'Obtener indicaciones en Google Maps →'}</a></p>`;}
+function showLocation(key){const x=locations[key];if(!x||!tabs||!detail)return;tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.key===key));detail.innerHTML=`<h3>${x.city}</h3>${x.label?`<p class="locationLabel">${currentLang==='en'?'Main location':'Sede principal'}</p>`:''}<p>${x.address}</p><div class="hours"><b>${currentLang==='en'?'Hours':'Horario'}</b><br>${x.hours}</div><p><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.address)}" target="_blank" rel="noopener">${currentLang==='en'?'How to get there →':'Cómo llegar →'}</a></p>`;}
 if(tabs){tabs.innerHTML=locationKeys.map(k=>`<button type="button" data-key="${k}" aria-label="${locations[k].city}">${locations[k].city}</button>`).join('');tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(b)showLocation(b.dataset.key);});}
 const locationsSection=document.querySelector('#sedes');
 const closeLocations=document.querySelector('#closeLocations');
@@ -125,7 +125,7 @@ async function buildQuotePdf(){
   if(!window.jspdf?.jsPDF){quoteMsg.textContent=currentLang==='en'?'The PDF library could not be loaded. Check your internet connection and try again.':'No se pudo cargar el componente PDF. Verifica tu conexión a internet e inténtalo nuevamente.';return false;}
   if(!selected.size){quoteMsg.textContent=currentLang==='en'?'Select at least one test first.':'Selecciona al menos un examen antes de continuar.';return false;}
   const data=quoteData(),code=quoteCode(),total=selectedTotal(),doc=new window.jspdf.jsPDF({unit:'mm',format:'a4'});let y=20;
-  const green=[0,169,157],orange=[242,140,40],ink=[35,45,48],muted=[105,116,120],line=[220,226,226];
+  const green=[47,144,142],orange=[242,101,34],ink=[35,45,48],muted=[105,116,120],line=[220,226,226];
   doc.setFillColor(...green);doc.rect(0,0,210,10,'F');
   const logoData=await getOfficialLogoDataUrl();
   if(logoData){doc.addImage(logoData,'JPEG',20,14,43,15,'LABS_OFFICIAL','FAST');}
