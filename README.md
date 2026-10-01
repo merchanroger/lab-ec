@@ -1,23 +1,10 @@
-# LABS — Corrección final revisada
+# LABS — Corrección puntual Sedes + Naranja + Cotizador + WhatsApp
 
-Esta versión parte de la versión entregada por el usuario y aplica únicamente la corrección solicitada de **logo + colores + módulo de sedes**.
+Ajustes realizados únicamente sobre la versión anterior:
 
-## Cambios
+1. Sedes: eliminado el verde oscuro y unificado el módulo al verde oficial `#2F908E`.
+2. Naranja: mantenido como acento secundario y sutil en detalles existentes y del cotizador.
+3. Cotizador: catálogo nuevamente presentado en filas visibles; la búsqueda permanece opcional y solo filtra la lista.
+4. Atención al usuario: reutiliza el enlace WhatsApp existente (`https://wa.me/593985090215`).
 
-- Logo oficial de LABS mantenido desde la URL oficial de LABS, con dimensiones explícitas para evitar que se vea reducido/deformado.
-- Verde principal único: `#2F908E`.
-- Naranja secundario: `#F26522`.
-- Sedes convertidas en una vista realmente Full Screen (`position: fixed`, `100vw`, `100dvh`) al abrirse desde Inicio, menú, contacto o footer.
-- Botón `← Volver` visible durante la vista Full Screen.
-- Escape cierra el módulo.
-- Sedes reorganizadas con selector de ciudad y tarjeta de información prioritaria.
-- Botón `Cómo llegar` abre Google Maps con la dirección de la sede seleccionada.
-- Diseño responsive específico para desktop, tablet y móvil.
-- PDF conserva la referencia al logo oficial de LABS.
-- No se alteraron las funcionalidades del cotizador, carrusel, notas, Nosotros, footer o menú fuera de los ajustes de identidad solicitados.
-
-## Fuente oficial consultada
-
-- https://labs.ec/
-- https://labs.ec/contactos/
-- https://labs.ec/wp-content/uploads/2020/10/logo.jpg
+No se modificaron las demás secciones, contenido, imágenes, tipografías ni funcionalidades fuera de estos puntos.
