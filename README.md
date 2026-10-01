@@ -1,10 +1,8 @@
-# LABS — Corrección puntual Sedes + Naranja + Cotizador + WhatsApp
+# LABS — Corrección puntual Sedes + Cotizador
 
 Ajustes realizados únicamente sobre la versión anterior:
+- Eliminado el gran bloque verde del módulo Full Screen de Sedes, conservando su funcionalidad.
+- Listado de exámenes del cotizador en 2 columnas en escritorio/tablet y 1 en móvil.
+- Mejora visual del Item 4 del cotizador, conservando exactamente los campos y la funcionalidad existentes.
 
-1. Sedes: eliminado el verde oscuro y unificado el módulo al verde oficial `#2F908E`.
-2. Naranja: mantenido como acento secundario y sutil en detalles existentes y del cotizador.
-3. Cotizador: catálogo nuevamente presentado en filas visibles; la búsqueda permanece opcional y solo filtra la lista.
-4. Atención al usuario: reutiliza el enlace WhatsApp existente (`https://wa.me/593985090215`).
-
-No se modificaron las demás secciones, contenido, imágenes, tipografías ni funcionalidades fuera de estos puntos.
+Se mantienen intactos el resto de contenidos, estructura, navegación y funcionalidades.

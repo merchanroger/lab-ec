@@ -461,3 +461,128 @@ body.locationsOpen{overflow:hidden!important;}
 .contactPanelSupport{display:block;color:var(--ink);font:700 34px/1.15 Manrope;text-decoration:none;margin:15px 0;transition:color .18s ease;}
 .contactPanelSupport:hover{color:var(--accent-dark);}
 @media(max-width:600px){.contactPanelSupport{font-size:29px;}}
+
+/* ===== AJUSTES PUNTUALES — SEDES + COTIZADOR ===== */
+/* Sedes: eliminar el gran bloque verde, conservando exactamente el módulo y su funcionalidad. */
+.locations.isFullscreen{
+  background:#f6faf9!important;
+  color:var(--ink)!important;
+}
+.locations.isFullscreen .locationFullscreenHead h2{color:var(--ink)!important;}
+.locations.isFullscreen .sectionTag{color:var(--brand)!important;opacity:1!important;}
+.locations.isFullscreen .locationLead{color:var(--muted)!important;}
+.locationStatus{color:var(--muted)!important;}
+.locations.isFullscreen .locationPicker{
+  background:#fff!important;
+  border:1px solid var(--line)!important;
+  box-shadow:0 10px 28px rgba(18,49,58,.06);
+}
+.locationPickerHead{color:var(--ink)!important;}
+.locationPickerHead b{color:var(--muted)!important;}
+.locations.isFullscreen .locationTabs button{
+  background:#f7faf9!important;
+  color:var(--ink)!important;
+  border-color:var(--line)!important;
+}
+.locations.isFullscreen .locationTabs button:hover{
+  background:var(--soft)!important;
+  border-color:rgba(47,144,142,.25)!important;
+}
+.locations.isFullscreen .locationTabs button.active{
+  background:var(--brand)!important;
+  color:#fff!important;
+  border-color:var(--brand)!important;
+}
+.locationClose{
+  background:#fff!important;
+  color:var(--brand)!important;
+  border-color:var(--line)!important;
+  box-shadow:0 8px 20px rgba(18,49,58,.08);
+}
+.locationClose:hover,.locationClose:focus-visible{
+  background:var(--brand)!important;
+  color:#fff!important;
+  border-color:var(--brand)!important;
+}
+
+/* Cotizador: dos columnas en escritorio/tablet y una sola en móvil. */
+.quoteItems{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-rows:minmax(58px,auto)!important;
+  align-items:stretch;
+  gap:0!important;
+  max-height:520px!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+}
+.quoteItem{
+  display:grid!important;
+  grid-template-columns:28px minmax(0,1fr) auto!important;
+  align-items:center!important;
+  width:auto!important;
+  min-height:58px!important;
+  padding:11px 14px!important;
+  border:0!important;
+  border-bottom:1px solid var(--line)!important;
+  background:#fff!important;
+}
+.quoteItem:nth-child(odd){border-right:1px solid var(--line)!important;}
+.quoteItem input{margin:0!important;justify-self:center;}
+.quoteItem span{display:block!important;height:auto!important;min-width:0!important;line-height:1.35!important;}
+.quoteItem>b{color:var(--brand-dark);font-size:12px;white-space:nowrap;}
+
+/* Item 4: misma funcionalidad y campos, únicamente una presentación más limpia. */
+.quoteStepRequest{
+  margin-top:24px!important;
+  padding-top:6px;
+}
+#quoteForm{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px;
+  margin-top:10px;
+  gap:12px;
+}
+#quoteForm input{
+  width:100%;
+  min-height:48px;
+  padding:13px 14px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:var(--ink);
+  outline:none;
+  transition:border-color .18s ease,box-shadow .18s ease;
+}
+#quoteForm input:focus{
+  border-color:var(--brand);
+  box-shadow:0 0 0 3px rgba(47,144,142,.10);
+}
+#quoteForm .btn.primary{
+  min-height:48px;
+  border-radius:8px;
+}
+@media(max-width:600px){
+  .quoteItems{
+    grid-template-columns:1fr!important;
+    max-height:55vh!important;
+  }
+  .quoteItem:nth-child(odd){border-right:0!important;}
+  .quoteItem{min-height:58px!important;padding:11px 10px!important;}
+  #quoteForm{padding:16px;}
+}
+
+
+/* ===== CORRECCIÓN PUNTUAL FINAL — COTIZADOR + SEDES + CONTACTO ===== */
+/* 1) Sedes: conservar el módulo y eliminar cualquier apariencia de bloque verde sólido. */
+.locations.isFullscreen{background:#f6faf9!important;color:var(--ink)!important;}
+.locations.isFullscreen .locationDetail{background:#fff!important;}
+
+/* 2) Cotizador: dos columnas en desktop/tablet; una columna únicamente en móvil. */
+.quoteItems{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0!important;overflow-x:hidden!important;}
+@media(max-width:600px){.quoteItems{grid-template-columns:1fr!important;}}
+
+/* 3) Contacto: eliminar el verde claro del fondo sin alterar su estructura. */
+.contact{background:#fff!important;}
