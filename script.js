@@ -113,14 +113,18 @@ clearExamSearch?.addEventListener('click',()=>{quoteFilter='';if(examSearch)exam
 function quoteData(){const fd=new FormData(quoteForm);return {name:fd.get('name')||'',identification:fd.get('identification')||'',email:fd.get('email')||'',phone:fd.get('phone')||'',date:new Date()};}
 function quoteCode(){const d=new Date(),part=String(d.getTime()).slice(-6);return `LABS-${d.getFullYear()}-${part}`;}
 function selectedTotal(){return [...selected].reduce((sum,i)=>sum+priceNumber(exams[i].price),0);}
-async function getOfficialLogoDataUrl(){
-  try{
-    const response=await fetch('https://labs.ec/wp-content/uploads/2020/10/logo.jpg?v=20260930',{mode:'cors',cache:'force-cache'});
-    if(!response.ok)throw new Error('logo');
-    const blob=await response.blob();
-    return await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(blob);});
-  }catch(e){return null;}
+let officialLogoDataUrlPromise=null;
+function getOfficialLogoDataUrl(){
+  if(officialLogoDataUrlPromise)return officialLogoDataUrlPromise;
+  officialLogoDataUrlPromise=fetch('https://labs.ec/wp-content/uploads/2020/10/logo.jpg?v=20260930',{mode:'cors',cache:'force-cache'})
+    .then(response=>{if(!response.ok)throw new Error('logo');return response.blob();})
+    .then(blob=>new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(blob);}))
+    .catch(()=>null);
+  return officialLogoDataUrlPromise;
 }
+// Pre-carga una sola vez mientras la página está inactiva para que el clic en PDF no tenga que iniciar la petición.
+if('requestIdleCallback' in window) requestIdleCallback(()=>getOfficialLogoDataUrl(),{timeout:1200});
+else window.addEventListener('load',()=>getOfficialLogoDataUrl(),{once:true});
 async function buildQuotePdf(){
   if(!window.jspdf?.jsPDF){quoteMsg.textContent=currentLang==='en'?'The PDF library could not be loaded. Check your internet connection and try again.':'No se pudo cargar el componente PDF. Verifica tu conexión a internet e inténtalo nuevamente.';return false;}
   if(!selected.size){quoteMsg.textContent=currentLang==='en'?'Select at least one test first.':'Selecciona al menos un examen antes de continuar.';return false;}

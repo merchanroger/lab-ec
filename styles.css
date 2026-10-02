@@ -575,6 +575,16 @@ body.locationsOpen{overflow:hidden!important;}
 }
 
 
+/* ===== CORRECCIÓN PUNTUAL — COLOR + SEDES + PDF ===== */
+/* 1) Franja superior: usar exactamente el verde principal LABS. */
+.locations.isFullscreen{border-top:6px solid #2F908E!important;}
+
+/* 2) Sedes: sin gran recuadro verde sólido; se conserva toda la funcionalidad. */
+.locations.isFullscreen{background:#f6faf9!important;color:var(--ink)!important;}
+.locations.isFullscreen .locationLayout{background:transparent!important;}
+.locations.isFullscreen .locationPicker{background:#fff!important;}
+.locations.isFullscreen .locationDetail{background:#fff!important;}
+
 /* ===== CORRECCIÓN PUNTUAL FINAL — COTIZADOR + SEDES + CONTACTO ===== */
 /* 1) Sedes: conservar el módulo y eliminar cualquier apariencia de bloque verde sólido. */
 .locations.isFullscreen{background:#f6faf9!important;color:var(--ink)!important;}
@@ -586,3 +596,13 @@ body.locationsOpen{overflow:hidden!important;}
 
 /* 3) Contacto: eliminar el verde claro del fondo sin alterar su estructura. */
 .contact{background:#fff!important;}
+
+/* ===== OVERRIDE FINAL — SOLO COLOR + SEDES ===== */
+.locations.isFullscreen{
+  background:#f6faf9!important;
+  color:var(--ink)!important;
+  border-top:6px solid #2F908E!important;
+}
+.locations.isFullscreen .locationLayout{background:transparent!important;}
+.locations.isFullscreen .locationPicker{background:#fff!important;}
+.locations.isFullscreen .locationDetail{background:#fff!important;}
