@@ -599,7 +599,7 @@ body.locationsOpen{overflow:hidden!important;}
 
 /* ===== OVERRIDE FINAL — SOLO COLOR + SEDES ===== */
 .locations.isFullscreen{
-  background:#f6faf9!important;
+  background:#fff!important;
   color:var(--ink)!important;
   border-top:6px solid #2F908E!important;
 }
